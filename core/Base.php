@@ -55,7 +55,7 @@ class Base
     }
     
     function notExist($name='', $type='') {
-        exit('Not exsit '.$type.' : ' . $name);
+        $this->view('core/error', ['msg'=> $type.' : ' . $name. ' not found.']);
     }
 
     function parseUrl() {
