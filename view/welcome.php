@@ -1,6 +1,6 @@
 <div class="jumbotron">
-  <h1>Hello E-Frame! </h1>
-  <p>E-Frame是一个轻框架。</p>
+  <h1>Hello E-PHP! </h1>
+  <p>E-PHP是一个轻框架。</p>
   <p>作者：丁庆</p>
   	<div>
 		<label class="label label-primary" for="">version 1.0.0</label>

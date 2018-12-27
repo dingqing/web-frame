@@ -4,12 +4,12 @@
 	<meta charset="UTF-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"> 
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>E-Frame</title>
-	<link rel="stylesheet" type="text/css" href="<?php echo $viewUrl;?>css/bootstrap.css" />
+	<title>E-PHP</title>
+	<link rel="stylesheet" type="text/css" href="<?php echo $baseUrl;?>css/bootstrap.css" />
 	<!--[if IE]>
 		<script src="http://libs.useso.com/js/html5shiv/3.7/html5shiv.min.js"></script>
 	<![endif]-->
-	<script src='<?php echo $viewUrl;?>js/jquery-2.1.1.min.js'></script>
+	<script src='<?php echo $baseUrl;?>js/jquery-2.1.1.min.js'></script>
 </head>
 <body>
 <div class="container">

@@ -1,26 +1,26 @@
-<?php 
-namespace controller;
+<?php
 
-if (!defined('ACCESS')) exit('bad request!');
+namespace Controller;
+use Framework\Base;
 
-class Index extends \Base
+class Index extends Base
 {
 	function __construct($model) {
 		$this->model = $model;
 	}
 
-    function index($value='') {
-        $this->view('core/welcome');
+    function index() {
+        $this->view('welcome');
     }
 
-    function doc($value='') {
-    	$this->view('core/doc');
+    function doc() {
+    	$this->view('doc');
     }
 
     function hello() {
     	$tickets = $this->model->select("tickets", 'ticket', [
             "status" => 2,
         ]);
-        $this->view('core/hello', ['tickets'=>$tickets]);
+        $this->view('hello', ['tickets'=>$tickets]);
     }
 }
