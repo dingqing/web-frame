@@ -1,3 +1,4 @@
-<div class="container">
-	<p class="bg-danger"><?php echo $msg;?></p>
+<p></p>
+<div class="alert alert-danger">
+    <strong>错误!</strong> <?php echo $msg;?>
 </div>
