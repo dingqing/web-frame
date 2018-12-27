@@ -1,5 +1,16 @@
 {
+    "name": "niumeng/e-php",
+    "description": "yet another php framework",
     "require": {
-        "catfan/medoo": "^1.5"
-    }
+        "php": "7.0.0",
+        "catfan/medoo": "^1.5",
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "niumeng",
+            "email": "442367569@qq.com"
+        }
+    ],
+    "minimum-stability": "stable"
 }
