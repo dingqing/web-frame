@@ -16,10 +16,10 @@
     <a class="navbar-brand" href="<?php echo $baseUrl;?>">首页</a>
 
     <ul class="navbar-nav">
-        <li class="nav-item <?php if ($nowA=='doc'): ?>active<?php endif ?>">
+        <li class="nav-item <?php if ($action=='doc'): ?>active<?php endif ?>">
             <a class="nav-link" href="<?php echo $baseUrl;?>index/doc">文档</a>
         </li>
-        <li class="nav-item <?php if ($nowA=='about'): ?>active<?php endif ?>">
+        <li class="nav-item <?php if ($action=='about'): ?>active<?php endif ?>">
             <a class="nav-link" href="<?php echo $baseUrl;?>index/about">关于</a>
         </li>
     </ul>
