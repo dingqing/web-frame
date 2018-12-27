@@ -57,7 +57,7 @@ class App
         $class  = implode('\\', $classArr);
         $class = str_replace('\\', '/', $class);
 
-        include ($this->rootPath) . $class . '.php';
+        include ($this->rootPath . $class . '.php');
     }
 
     function viewRaw($file='', $data=[]) {
@@ -112,13 +112,13 @@ class App
             }
 
             // 使用默认模块/控制器/操作逻辑
-            if (!isset($uri[1][0]) || empty($uri[1][0])) {
+            //if (!isset($uri[1][0]) || empty($uri[1][0])) {
                 // CLI 模式不输出
                 /*if ($entrance->app->runningMode === 'cli') {
                     $entrance->app->notOutput = true;
                 }*/
-                return;
-            }
+                //return;
+            //}
             $uri = $uri[1][0];
 
             /* 自定义路由判断 */
