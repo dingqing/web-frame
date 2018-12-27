@@ -3,7 +3,7 @@
     "description": "yet another php framework",
     "require": {
         "php": "7.0.0",
-        "catfan/medoo": "^1.5",
+        "catfan/medoo": "^1.5"
     },
     "license": "MIT",
     "authors": [
