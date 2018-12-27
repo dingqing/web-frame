@@ -30,7 +30,7 @@ class App
         list($this->module, $this->controller, $this->action, $this->params) = Router::parseUrl();
 
         //exception and error handle
-        Handle::call();
+        ErrorHandle::call();
 
         $this->dispatch();
     }
