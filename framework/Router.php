@@ -4,17 +4,16 @@ namespace Framework;
 
 class Router
 {
-    static function parseUrl() {
-        $module = 'framework';
-        $c = $a = 'index';
+    static function parseUrl($m, $c, $a)
+    {
         $params = [];
 
         if (strpos($_SERVER['REQUEST_URI'], 'index.php')) {
-            if (isset($_REQUEST['module'])) $module=$_REQUEST['module'];
-            if (isset($_REQUEST['controller'])) $c=$_REQUEST['controller'];
-            if (isset($_REQUEST['action'])) $a=$_REQUEST['action'];
+            if (isset($_REQUEST['m'])) $m = $_REQUEST['m'];
+            if (isset($_REQUEST['c'])) $c = $_REQUEST['c'];
+            if (isset($_REQUEST['a'])) $a = $_REQUEST['a'];
             $params = $_REQUEST;
-        }else{//pathinfo
+        } else {//pathinfo
             /* 匹配出uri */
             if (strpos($_SERVER['REQUEST_URI'], '?')) {
                 preg_match_all('/^\/(.*)\?/', $_SERVER['REQUEST_URI'], $uri);
@@ -30,45 +29,18 @@ class Router
             }*/
             //return;
             //}
+
             $uri = $uri[1][0];
-
-            /* 自定义路由判断 */
-            if ($uri != ''){
+            if ($uri != '') {
                 $uri = explode('/', $uri);
-                switch (count($uri)) {
-                    case 3:
-                        $module     = $uri['0'];
-                        $c = $uri['1'];
-                        $a     = $uri['2'];
-                        break;
-
-                    case 2:
-                        /*
-                        * 使用默认模块
-                        */
-                        $c = $uri['0'];
-                        $a     = $uri['1'];
-                        break;
-                    case 1:
-                        /*
-                        * 使用默认模块/控制器
-                        */
-                        $a = $uri['0'];
-                        break;
-
-                    default:
-                        /*
-                        * 使用默认模块/控制器/操作逻辑
-                        */
-                        break;
-                }
-
-                if (count($uri) > 2){
-                    $params = array_slice($uri, 3);
-                }
+                $uriCount = count($uri);
+                if ($uriCount > 2) $m = array_shift($uri);
+                if ($uriCount > 1) $c = array_shift($uri);
+                if ($uriCount > 0) $a = array_shift($uri);
+                if ($uriCount > 3) $params = $uri;
             }
         }
 
-        return [$module, $c, $a, $params];
+        return [$m, $c, $a, $params];
     }
 }

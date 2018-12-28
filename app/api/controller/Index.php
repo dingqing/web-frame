@@ -1,16 +1,19 @@
 <?php
 
 namespace App\Api\Controller;
-use Framework\App;
 
-class Index extends App
+use Framework\ApiController;
+use Framework\Response;
+
+class Index extends ApiController
 {
-	function __construct($model) {
-	    parent::__construct();
-		$this->model = $model;
-	}
+    function __construct($model)
+    {
+        $this->model = $model;
+    }
 
-    function index() {
-        $this->response(['success.']);
+    function index()
+    {
+        Response::response('success.');
     }
 }
