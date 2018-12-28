@@ -19,10 +19,10 @@ git钩子配置、忽略文件。
 ###  框架目录一览
 ```
 app
-    ├─ api
+    ├─ api                 [api模块]
         ├─ controller
         ├─ model
-    ├─ framework
+    ├─ framework           [默认模块]
         ├─ controller
         ├─ model
 config                     [配置目录]
@@ -31,6 +31,13 @@ config                     [配置目录]
     └─ nosql.php           [nosql配置]
 docs                       [接口文档目录]
 framework                  [核心框架目录]
+    └─ ErrorHandle.php     [错误处理机制类]
+    └─ Log.php             [log机制类]
+    └─ Request.php         [请求类]
+    └─ Response.php        [响应类]
+    └─ Router.php          [路由策略]
+    └─ run.php             [框架应用启用脚本]
+    └─ View.php            [视图类]
 public                     [公共资源目录，暴露到万维网]
     ├─ dist                [前端build之后的资源目录，build生成的目录，不是发布分支忽略该目录]
     └─ ...
