@@ -1,4 +1,4 @@
-# e-php
+# E-PHP
 A Faster Lightweight Full-Stack PHP Framework.
 
 <p align="center"> <a href="./README-CN.md">中文版</a>　<p>
@@ -78,3 +78,24 @@ package.json
 README-CN.md               
 README.md                  
  ```
+
+## Framework Module Description:
+...
+
+## How to use ?
+Run：
+> composer require niumeng/e-php
+
+**Web Server Mode:**
+
+Quick Start:
+```
+
+```
+**Cli Mode:**
+**Swoole Mode:**
+
+## Docker env
+## Performance with php-fpm
+## Performance with Swoole
+## Question&Contribution

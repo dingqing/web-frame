@@ -17,7 +17,7 @@ class Router
             $questionMark = strpos($_SERVER['REQUEST_URI'], '?') ? '\?' : '';
             preg_match_all('/^\/(.*)' . $questionMark . '/', $_SERVER['REQUEST_URI'], $uri);
 
-            // CLI 模式不输出
+            // CLI mode
             /*if (!isset($uri[1][0]) || empty($uri[1][0])) {
                 if (App::$runningMode === 'cli') {
                     App::$notOutput = true;
