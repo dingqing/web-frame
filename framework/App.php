@@ -6,6 +6,7 @@ class App
 {
     public static $rootPath;
     public static $configs;
+    public static $container;
 
     public static $module;
     public static $controller;
@@ -15,13 +16,16 @@ class App
     public function __construct()
     {
         self::$rootPath = dirname(__DIR__) . DIRECTORY_SEPARATOR;
-        self::$configs = $this->getConfig();
+
+        spl_autoload_register(['Framework\App', 'autoload']);
+
+        // register services
+        self::$container = new Container();
+        self::$container->register();
     }
 
     public function run()
     {
-        spl_autoload_register(['Framework\App', 'autoload']);
-
         $configs = self::$configs;
         list(self::$module, self::$controller, self::$action, self::$params) = Router::parseUrl($configs['defaultModule'], $configs['defaultController'], $configs['defaultAction']);
 
@@ -49,10 +53,5 @@ class App
         $space = strtolower($space);
 
         include self::$rootPath . $space . '/' . $className . '.php';
-    }
-
-    public function getConfig()
-    {
-        return include self::$rootPath . 'config/common.php';
     }
 }

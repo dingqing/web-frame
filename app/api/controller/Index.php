@@ -7,6 +7,10 @@ use Framework\Response;
 
 class Index extends ApiController
 {
+    function hello(){
+        return 'Hello E-PHP';
+    }
+
     function index()
     {
         Response::response('success.');
