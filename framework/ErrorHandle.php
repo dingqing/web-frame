@@ -23,49 +23,48 @@ class ErrorHandle
                 case E_USER_WARNING:
                     $errorType = 'My WARNING';
                     break;
-
                 case E_USER_NOTICE:
                     $errorType = 'My NOTICE';
                     break;
-
                 default:
                     $errorType = 'Unknown error type';
                     break;
             }
         }
 
-        $msg = "<b>$errorType</b> [$errno] $errstr<br />" . PHP_EOL
-            . " on line $errline in file $errfile";
-        View::load('common/error', ['msg' => $msg]);
+        Response::responseErr(
+            "$errorType [$errno]<br/>" .
+            "$errstr<br/>" .
+            "on line $errline in file $errfile"
+        );
         exit(1);
 
-        /* Don't execute PHP internal error handler */
+        // don't execute PHP internal error handler 
         return true;
     }
 
     function _exception_handler($exception)
     {
-        $msg = json_encode([
-            'code'     => $exception->getCode(),
-            'message'  => $exception->getMessage(),
-            'file'     => $exception->getFile(),
-            'line'     => $exception->getLine(),
-            'trace'    => $exception->getTrace(),
-            'previous' => $exception->getPrevious()
-        ]);
-        View::load('common/error', ['msg' => $msg]);
+        Response::responseErr(
+            'code: ' . $exception->getCode() . '<br/>' .
+            'message: ' . $exception->getMessage() . '<br/>' .
+            'file: ' . $exception->getFile() . '<br/>' .
+            'line: ' . $exception->getLine() . '<br/>' .
+            'trace: ' . json_encode($exception->getTrace()) . '<br/>' .
+            'previous: ' . $exception->getPrevious()
+        );
     }
 
     function _shutdown()
     {
         $error = error_get_last();
         if ($error) {
-            View::load('common/error', ['msg' => json_encode([
-                'type'    => $error['type'],
-                'message' => $error['message'],
-                'file'    => $error['file'],
-                'line'    => $error['line'],
-            ])]);
+            Response::responseErr(
+                'type: ' . $error['type'] . '<br/>' .
+                'message: ' . $error['message'] . '<br/>' .
+                'file: ' . $error['file'] . '<br/>' .
+                'line: ' . $error['line']
+            );
         }
     }
 }

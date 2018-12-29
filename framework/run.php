@@ -1,8 +1,8 @@
 <?php
-/*加载类文件*/
+//load base file
 include 'App.php';
 require '../vendor/autoload.php';
 
-/*处理请求*/
+//deal with request
 $app = new \Framework\App();
 $app->run();

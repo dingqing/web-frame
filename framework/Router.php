@@ -14,21 +14,16 @@ class Router
             if (isset($_REQUEST['a'])) $a = $_REQUEST['a'];
             $params = $_REQUEST;
         } else {//pathinfo
-            /* 匹配出uri */
-            if (strpos($_SERVER['REQUEST_URI'], '?')) {
-                preg_match_all('/^\/(.*)\?/', $_SERVER['REQUEST_URI'], $uri);
-            } else {
-                preg_match_all('/^\/(.*)/', $_SERVER['REQUEST_URI'], $uri);
-            }
+            $questionMark = strpos($_SERVER['REQUEST_URI'], '?') ? '\?' : '';
+            preg_match_all('/^\/(.*)' . $questionMark . '/', $_SERVER['REQUEST_URI'], $uri);
 
-            // 使用默认模块/控制器/操作逻辑
-            //if (!isset($uri[1][0]) || empty($uri[1][0])) {
             // CLI 模式不输出
-            /*if ($entrance->app->runningMode === 'cli') {
-                $entrance->app->notOutput = true;
+            /*if (!isset($uri[1][0]) || empty($uri[1][0])) {
+                if (App::$runningMode === 'cli') {
+                    App::$notOutput = true;
+                }
+                return;
             }*/
-            //return;
-            //}
 
             $uri = $uri[1][0];
             if ($uri != '') {

@@ -28,48 +28,31 @@ class App
         //check params
         self::$params = Request::check(self::$params);
 
-        //exception and error handle
+        //register exception and error handle
         $errorHandle = new ErrorHandle();
         $errorHandle->register();
 
-        $this->dispatch();
-    }
+        /* dispatch */
+        self::$controller = ucfirst(self::$controller);
 
-    public function dispatch()
-    {
-        $c = ucfirst(self::$controller);
-
-        $model = 'App\\' . self::$module . '\\Model\\' . $c;
-        $configs = self::$configs;
-        $model = new $model($configs['db']);
-
-        // 执行方法
-        $c = 'App\\' . self::$module . '\\Controller\\' . $c;
-        $c = new $c($model);
-
+        $c = 'App\\' . self::$module . '\\Controller\\' . self::$controller;
+        $c = new $c();
         call_user_func_array([$c, self::$action], self::$params);
     }
 
-    // 规则：命名空间和目录名保持同名
     public function autoload($class)
     {
         $classArr = explode('\\', $class);
         $className = array_pop($classArr);
-        //命名空间转小写目录名
-        foreach ($classArr as &$v) {
-            $v = strtolower($v);
-        }
-        unset($v);
+        $space = implode('/', $classArr);
+        // namespace to lower case
+        $space = strtolower($space);
 
-        array_push($classArr, $className);
-        $class = implode('\\', $classArr);
-        $class = str_replace('\\', '/', $class);
-
-        include self::$rootPath . $class . '.php';
+        include self::$rootPath . $space . '/' . $className . '.php';
     }
 
     public function getConfig()
     {
-        return $configs = include self::$rootPath . 'config/common.php';
+        return include self::$rootPath . 'config/common.php';
     }
 }

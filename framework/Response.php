@@ -12,4 +12,9 @@ class Response
             'code' => $code,
         ]);
     }
+
+    public static function responseErr($msg)
+    {
+        View::load('common/error', ['msg' => $msg]);
+    }
 }

@@ -11,22 +11,17 @@ class View
 
     static function load($file = '', $data = [], $header = true, $footer = true)
     {
-        if (!is_array($data)) {
-            exit('$data is not array!');
-        }
         extract($data);
-
-        // 模板公共变量
+        // varibles passed to template
         $module = App::$module;
         $controller = App::$controller;
         $action = App::$action;
-
         $baseUrl = $_SERVER['REQUEST_SCHEME'] . "://" . $_SERVER['HTTP_HOST'] . DIRECTORY_SEPARATOR;
 
         ob_start();
         ob_implicit_flush(0);
 
-        // 加载模板
+        // load templates
         if ($header) {
             include (App::$rootPath) . 'view/common/header.php';
         }

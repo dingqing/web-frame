@@ -7,11 +7,6 @@ use Framework\View;
 
 class Index extends Controller
 {
-    function __construct($model)
-    {
-        $this->model = $model;
-    }
-
     function index()
     {
         View::load('framework/index');

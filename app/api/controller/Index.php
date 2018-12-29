@@ -7,11 +7,6 @@ use Framework\Response;
 
 class Index extends ApiController
 {
-    function __construct($model)
-    {
-        $this->model = $model;
-    }
-
     function index()
     {
         Response::response('success.');
