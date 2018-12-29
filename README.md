@@ -1,9 +1,9 @@
 # e-php
-A Faster Lightweight Full-Stack PHP Framework
+A Faster Lightweight Full-Stack PHP Framework.
 
 <p align="center"> <a href="./README-CN.md">中文版</a>　<p>
 
-General process as follows:
+For a PHP framework. General process as follows:
 ```
 Entry file ----> Register autoload function
            ----> Register error(and exception) function
@@ -18,10 +18,8 @@ Entry file ----> Register autoload function
 
 ### Features
 - Finished：
-
-Entry file, Load config file, autoload, Register error(and exception) function, 
-Router, Request, Response, Json, View.
-
+    - Entry file, Load config file, autoload, Register error(and exception) function, Router, 
+    - Request, Response, Json, View.
 - Later：
     - Accessibility: 
 file uploader, nosql, logger, message queue.
