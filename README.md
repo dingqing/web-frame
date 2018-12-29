@@ -19,14 +19,11 @@ Entry file ----> Register autoload function
 ### Features
 - Finished：
     - Entry file, Load config file, autoload, Register error(and exception) function, Router, 
-    - Request, Response, Json, View.
+    - Request, Response, Json, View, 
+    - ioc, 
+    - git hook configuration
 - Later：
-    - Accessibility: 
-file uploader, nosql, logger, message queue.
-form assistant, CURD scaffolding.
-API document, unit test, command line.
-git hook configuration, ignore files.
-    - framework design: ioc
+    - Swoole mode, command line
 
 ###  Project Directory Structure
 ```
