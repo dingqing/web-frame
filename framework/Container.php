@@ -7,9 +7,9 @@ class Container
     private $classMap = [];
     public $instanceMap = [];
 
-    public function register()
+    public function register($rootPath)
     {
-        App::$configs = include App::$rootPath . 'config/common.php';
+        App::$configs = include $rootPath . 'config/common.php';
 
         $nosqls = ['redis'];
         foreach ($nosqls as $v) {

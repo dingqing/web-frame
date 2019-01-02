@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Framework\Controller;
+namespace App\Demo\Controller;
 
 use Framework\App;
 use Framework\Controller;
@@ -10,7 +10,7 @@ class Index extends Controller
 {
     function index()
     {
-        View::load('framework/index');
+        View::load('demo/index');
     }
 
     function doc($params = '')
@@ -22,7 +22,7 @@ class Index extends Controller
             "status" => 2,
         ]);
 
-        View::load('framework/doc', [
+        View::load('demo/doc', [
             'redisK' => $redis->get("redisK"),
             'tickets' => $tickets,
         ]);
@@ -30,6 +30,6 @@ class Index extends Controller
 
     public function about()
     {
-        View::load('framework/about');
+        View::load('demo/about');
     }
 }

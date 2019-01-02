@@ -31,7 +31,7 @@ app
     ├─ api                 [api模块]
         ├─ controller
         ├─ model
-    ├─ framework           [默认模块]
+    ├─ demo                [默认模块]
         ├─ controller
         ├─ model
 config                     [配置目录]

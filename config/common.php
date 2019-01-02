@@ -1,6 +1,6 @@
 <?php
 return [
-    'defaultModule' => 'framework',
+    'defaultModule' => 'demo',
     'defaultController' => 'index',
     'defaultAction' => 'index',
     'db' => [
@@ -19,6 +19,6 @@ return [
     'swoole' => [
         'worker_num' => 5,
         'max_request' => 10000,
-        'log_file' => '/runtime/logs/easy_swoole.log',
+        'log_file' => '../runtime/logs/swoole.log',
     ],
 ];

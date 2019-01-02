@@ -6,8 +6,8 @@ class ErrorHandle
 {
     function register()
     {
-        set_error_handler([$this, '_error_handler']);
-        set_exception_handler([$this, '_exception_handler']);
+//        set_error_handler([$this, '_error_handler']);
+//        set_exception_handler([$this, '_exception_handler']);
         register_shutdown_function([$this, '_shutdown']);
     }
 

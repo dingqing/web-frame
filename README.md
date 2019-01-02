@@ -31,7 +31,7 @@ app
     ├─ api                 [api module]
         ├─ controller
         ├─ model
-    ├─ framework           [default module]
+    ├─ demo                [default module]
         ├─ controller
         ├─ model
 config                     [config dir]

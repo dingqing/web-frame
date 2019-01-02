@@ -2,6 +2,8 @@
 
 namespace Framework;
 
+use Closure;
+
 class App
 {
     public static $rootPath;
@@ -13,17 +15,23 @@ class App
     public static $action;
     public static $params;
 
-    public function __construct()
+    public $runningMode = 'fpm';
+    private $responseData;
+
+    public function __construct($rootPath)
     {
-        self::$rootPath = dirname(__DIR__) . DIRECTORY_SEPARATOR;
+        self::$rootPath = $rootPath;
 
         spl_autoload_register(['Framework\App', 'autoload']);
 
         // register services
         self::$container = new Container();
-        self::$container->register();
+        self::$container->register($rootPath);
     }
 
+    /**
+     * run a web request
+     */
     public function run()
     {
         $configs = self::$configs;
@@ -53,5 +61,12 @@ class App
         $space = strtolower($space);
 
         include self::$rootPath . $space . '/' . $className . '.php';
+    }
+
+    public function responseSwoole(Closure $closure)
+    {
+        $closure()->header('Content-Type', 'Application/json');
+        $closure()->header('Charset', 'utf-8');
+        $closure()->end(json_encode($this->responseData));
     }
 }
