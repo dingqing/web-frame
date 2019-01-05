@@ -22,8 +22,11 @@
     - 请求（网关：校验参数、访问权限、频率、签名）-响应，mvc，orm，视图，
     - ioc，
     - git钩子配置。
+- 在做：
+    - Swoole模式
 - 后续：
-    - Swoole模式。命令行。
+    - 命令行
+    - Vue
 
 ##  框架目录一览
 ```
@@ -143,6 +146,9 @@ App::$container->getSingle('mongodb');
 ###  日志模块
 目前使用 [SeasLog](https://github.com/SeasX/SeasLog)
 ###  Swoole模式
+```
+cd public && php server.php
+```
 ###  Job模式
 ###  接口文档生成和接口模拟模块
 使用 [apidoc](https://github.com/apidoc/apidoc)

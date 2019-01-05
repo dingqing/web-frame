@@ -22,8 +22,11 @@ Entry file ----> Register autoload function
     - Request, Response, Json, View, 
     - ioc, 
     - git hook configuration
-- Later：
-    - Swoole mode, command line
+- Working：
+    - Swoole mode
+- Todo：
+    - Vue integrations
+    - command line
 
 ###  Project Directory Structure
 ```
