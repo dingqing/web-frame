@@ -1,4 +1,4 @@
-# E-PHP
+# e-php
 A Faster Lightweight Full-Stack PHP Framework.
 
 <p align="center"> <a href="./README-CN.md">中文版</a>　<p>

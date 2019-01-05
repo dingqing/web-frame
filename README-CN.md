@@ -1,4 +1,4 @@
-# E-PHP
+# e-php
 造轮子系列，实现一个PHP轻量、全栈开发框架。
 
 <p align="center"> <a href="./README.md">英文版</a>　<p>
