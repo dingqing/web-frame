@@ -1,13 +1,16 @@
 <?php
 
-namespace Framework;
+namespace Framework\Handles;
 
-class ErrorHandle
+use Framework\App;
+use Framework\Response;
+
+Class ErrorHandle implements Handle
 {
-    function register()
+    function register(App $app)
     {
-//        set_error_handler([$this, '_error_handler']);
-//        set_exception_handler([$this, '_exception_handler']);
+        set_error_handler([$this, '_error_handler']);
+        set_exception_handler([$this, '_exception_handler']);
         register_shutdown_function([$this, '_shutdown']);
     }
 
@@ -32,7 +35,7 @@ class ErrorHandle
             }
         }
 
-        Response::responseErr(
+        Response::response(
             "$errorType [$errno]<br/>" .
             "$errstr<br/>" .
             "on line $errline in file $errfile"
@@ -45,7 +48,7 @@ class ErrorHandle
 
     function _exception_handler($exception)
     {
-        Response::responseErr(
+        Response::response(
             'code: ' . $exception->getCode() . '<br/>' .
             'message: ' . $exception->getMessage() . '<br/>' .
             'file: ' . $exception->getFile() . '<br/>' .
@@ -59,7 +62,7 @@ class ErrorHandle
     {
         $error = error_get_last();
         if ($error) {
-            Response::responseErr(
+            Response::response(
                 'type: ' . $error['type'] . '<br/>' .
                 'message: ' . $error['message'] . '<br/>' .
                 'file: ' . $error['file'] . '<br/>' .

@@ -4,17 +4,17 @@
 <p align="center"> <a href="./README.md">英文版</a>　<p>
 
 
-##  说明
-### 功能列表
-- 已完成：
-    - 单一入口，加载配置，自动加载，错误异常处理，路由，
+### 说明
+- 基本功能：
+    - 单一入口，加载配置，自动加载，错误、异常处理，路由，
     - 请求，响应，mvc，orm，视图，
     - ioc，
-    - git钩子配置。
-- 在做：
     - Swoole模式
-- 后续：
-    - 命令行
+- 工具
+    - git钩子配置，travis，phpunit，
+- Todos：
+    - phpunit，命令行工具，
+    - docker
     - Vue
 ### 依赖
 - [SeasLog](https://github.com/SeasX/SeasLog)
@@ -61,12 +61,9 @@ view
     ├─ pre-commit          [git pre-commit预commit钩子示例文件]
     ├─ commit-msg          [git commit-msg示例文件]
 .gitignore                 [git忽略文件配置]
-.travis.yml                [持续集成工具travis-ci配置文件]
-LICENSE                    [lincese文件]
-logo.png                   [框架logo图片]
+.travis.yml                [travis-ci配置文件]
 composer.json              [composer配置文件]
 composer.lock              [composer lock文件]
-package.json               [前端依赖配置文件]
 README-CN.md               [中文版readme文件]
 README.md                  [readme文件]
  ```
@@ -135,6 +132,7 @@ README.md                  [readme文件]
     ```
     cd public && php server.php
     ```
+    然后访问[http://localhost:8888/](http://localhost:8888/)
 13. Job模式
 14. 接口文档生成和接口模拟模块
     - 使用 [apidoc](https://github.com/apidoc/apidoc)

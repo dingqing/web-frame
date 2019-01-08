@@ -11,4 +11,12 @@ class Request
         }
         return $params;
     }
+
+    /**
+     * run a web request
+     */
+    public function register()
+    {
+
+    }
 }

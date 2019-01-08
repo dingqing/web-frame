@@ -3,6 +3,7 @@ return [
     'defaultModule' => 'demo',
     'defaultController' => 'index',
     'defaultAction' => 'index',
+    'rest_response' => true,
     'db' => [
         'database_type' => 'mysql',
         'database_name' => 'test',

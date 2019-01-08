@@ -6,14 +6,15 @@ class Controller
 {
     function __construct()
     {
-        $model = 'App\\' . App::$module . '\\Model\\' . App::$controller;
-        $configs = App::$configs;
+        $router = App::$container->getSingle('router');
+        $configs = App::$container->getSingle('config')->config;
+
+        $model = 'App\\' . $router->module . '\\Model\\' . $router->controller;
         $this->model = new $model($configs['db']);
     }
 
     public function __call($method, $b)
     {
-        Log::write();
         View::load('common/error', ['msg' => 'function : ' . $method . ' not found.']);
     }
 }

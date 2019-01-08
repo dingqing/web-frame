@@ -1,8 +1,9 @@
 <?php
 
-namespace Framework;
+namespace Framework\exceptions;
 
 use Exception;
+use SeasLog;
 
 /**
  */
@@ -41,18 +42,18 @@ class CoreHttpException extends Exception
     {
         $data = [
             '__coreError' => [
-                'code'    => $this->getCode(),
+                'code' => $this->getCode(),
                 'message' => $this->getMessage(),
-                'infomations'  => [
-                    'file'  => $this->getFile(),
-                    'line'  => $this->getLine(),
+                'infomations' => [
+                    'file' => $this->getFile(),
+                    'line' => $this->getLine(),
                     'trace' => $this->getTrace(),
                 ]
             ]
         ];
 
         // log
-        Response::response(json_encode($data));
+        SeasLog::debug(json_encode($data));
 
         // response
         header('Content-Type:Application/json; Charset=utf-8');
@@ -66,18 +67,18 @@ class CoreHttpException extends Exception
     {
         $data = [
             '__coreError' => [
-                'code'    => $this->getCode(),
+                'code' => $this->getCode(),
                 'message' => $this->getMessage(),
-                'infomations'  => [
-                    'file'  => $this->getFile(),
-                    'line'  => $this->getLine(),
+                'infomations' => [
+                    'file' => $this->getFile(),
+                    'line' => $this->getLine(),
                     'trace' => $this->getTrace(),
                 ]
             ]
         ];
 
         // log
-        Response::response(json_encode($data));
+        SeasLog::debug(json_encode($data));
 
         // response
         $reponse = App::$container->get('response-swoole');
@@ -93,17 +94,17 @@ class CoreHttpException extends Exception
     {
         $data = [
             '__coreError' => [
-                'code'    => 500,
+                'code' => 500,
                 'message' => $e,
-                'infomations'  => [
-                    'file'  => $e['file'],
-                    'line'  => $e['line'],
+                'infomations' => [
+                    'file' => $e['file'],
+                    'line' => $e['line'],
                 ]
             ]
         ];
 
         // log
-        Response::response(json_encode($data));
+        SeasLog::debug(json_encode($data));
 
         header('Content-Type:Application/json; Charset=utf-8');
         die(json_encode($data));
@@ -111,24 +112,24 @@ class CoreHttpException extends Exception
 
     /**
      *
-     * @param  array  $e
+     * @param  array $e
      * @return json
      */
     public static function reponseErrSwoole($e)
     {
         $data = [
             '__coreError' => [
-                'code'    => 500,
+                'code' => 500,
                 'message' => $e,
-                'infomations'  => [
-                    'file'  => $e['file'],
-                    'line'  => $e['line'],
+                'infomations' => [
+                    'file' => $e['file'],
+                    'line' => $e['line'],
                 ]
             ]
         ];
 
         // log
-        Response::response(json_encode($data));
+        SeasLog::debug(json_encode($data));
 
         $reponse = App::$container->get('response-swoole');
         $reponse->header('Content-Type', 'Application/json');

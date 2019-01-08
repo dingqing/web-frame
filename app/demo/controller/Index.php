@@ -27,9 +27,4 @@ class Index extends Controller
             'tickets' => $tickets,
         ]);
     }
-
-    public function about()
-    {
-        View::load('demo/about');
-    }
 }

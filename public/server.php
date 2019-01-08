@@ -6,11 +6,9 @@
 /**
  * Require framework
  */
-include '../framework/App.php';
-
-$app = new \Framework\App(dirname(__DIR__) . DIRECTORY_SEPARATOR);
-$config            = \Framework\App::$configs;
-$swooleConfig      = $config['swoole'];
+$app = require('../framework/swoole.php');
+$config = $app::$container->getSingle('config');
+$swooleConfig = $config->config['swoole'];
 $app->runningMode = 'swoole'; // set the app running mode
 
 /**

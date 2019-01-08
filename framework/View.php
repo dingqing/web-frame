@@ -13,9 +13,10 @@ class View
     {
         extract($data);
         // varibles passed to template
-        $module = App::$module;
-        $controller = App::$controller;
-        $action = App::$action;
+        $router = App::$container->getSingle('router');
+        $module = $router->module;
+        $controller = $router->controller;
+        $action = $router->action;
         $baseUrl = $_SERVER['REQUEST_SCHEME'] . "://" . $_SERVER['HTTP_HOST'] . DIRECTORY_SEPARATOR;
 
         ob_start();

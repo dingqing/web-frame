@@ -7,60 +7,60 @@ use Closure;
 class App
 {
     public static $rootPath;
-    public static $configs;
-    public static $container;
 
-    public static $module;
-    public static $controller;
-    public static $action;
-    public static $params;
+    private $notOutput = false;
+    public static $container;
 
     public $runningMode = 'fpm';
     private $responseData;
 
-    public function __construct($rootPath)
+    public function __construct($rootPath, Closure $loader)
     {
         self::$rootPath = $rootPath;
 
-        spl_autoload_register(['Framework\App', 'autoload']);
+        $loader(); // require Load file
+        Load::register($this);
 
         // register services
         self::$container = new Container();
-        self::$container->register($rootPath);
     }
 
-    /**
-     * run a web request
-     */
-    public function run()
+    public function load(Closure $handle)
     {
-        $configs = self::$configs;
-        list(self::$module, self::$controller, self::$action, self::$params) = Router::parseUrl($configs['defaultModule'], $configs['defaultController'], $configs['defaultAction']);
-
-        //check params
-        self::$params = Request::check(self::$params);
-
-        //register exception and error handle
-        $errorHandle = new ErrorHandle();
-        $errorHandle->register();
-
-        /* dispatch */
-        self::$controller = ucfirst(self::$controller);
-
-        $c = 'App\\' . self::$module . '\\Controller\\' . self::$controller;
-        $c = new $c();
-        call_user_func_array([$c, self::$action], self::$params);
+        $this->handlesList[] = $handle;
     }
 
-    public function autoload($class)
+    public function run(Closure $request)
     {
-        $classArr = explode('\\', $class);
-        $className = array_pop($classArr);
-        $space = implode('/', $classArr);
-        // namespace to lower case
-        $space = strtolower($space);
+        self::$container->set('request', $request);
 
-        include self::$rootPath . $space . '/' . $className . '.php';
+        foreach ($this->handlesList as $handle) {
+            $handle()->register($this);
+        }
+    }
+
+    public function response(Closure $closure)
+    {
+        register_shutdown_function([$this, 'responseShutdownFun'], $closure);
+    }
+
+    public function responseShutdownFun(Closure $closure)
+    {
+        if ($this->notOutput === true) {
+            return;
+        }
+        if ($this->runningMode === 'cli') {
+            $closure($this)->cliModeSuccess($this->responseData);
+            return;
+        }
+
+        /*$useRest = self::$container->getSingle('config')
+            ->config['rest_response'];
+
+        if ($useRest) {
+            $closure($this)->restSuccess($this->responseData);
+        }
+        $closure($this)->response($this->responseData);*/
     }
 
     public function responseSwoole(Closure $closure)

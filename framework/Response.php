@@ -13,6 +13,17 @@ class Response
         ]);
     }
 
+    public function restSuccess($response)
+    {
+        header('Content-Type:Application/json; Charset=utf-8');
+        die(json_encode([
+            'code' => 200,
+            'message' => 'OK',
+            'result' => $response
+        ], JSON_UNESCAPED_UNICODE)
+        );
+    }
+
     public static function responseErr($msg)
     {
         View::load('common/error', ['msg' => $msg]);

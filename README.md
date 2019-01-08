@@ -3,31 +3,21 @@ A Faster Lightweight Full-Stack PHP Framework.
 
 <p align="center"> <a href="./README-CN.md">中文版</a>　<p>
 
-For a PHP framework. General process as follows:
-```
-Entry file ----> Register autoload function
-           ----> Register error(and exception) function
-           ----> Load config file
-           ----> Request
-           ----> Router
-           ----> (Controller <----> Model)
-           ----> Response
-           ----> Json
-           ----> View
-```
 
 ### Features
-- Finished：
+- Basic：
     - Entry file, Load config file, autoload, Register error(and exception) function, Router, 
-    - Request, Response, Json, View, 
+    - Request, Response, mvc, orm, View, 
     - ioc, 
-    - git hook configuration
-- Working：
     - Swoole mode
-- Todo：
+- Tools：
+    - git hook configuration, travis, phpunit,
+- Todos：
+    - command line tool
+    - docker
     - Vue integrations
-    - command line
-
+### Dependencies
+- [SeasLog](https://github.com/SeasX/SeasLog)
 ###  Project Directory Structure
 ```
 app
@@ -81,7 +71,22 @@ README-CN.md
 README.md                  
  ```
 
-## Framework Module Description:
+## Develop
+### Framework design
+- For a PHP framework. General process as follows:
+    ```
+    Entry file ----> Register autoload function
+               ----> Register error(and exception) function
+               ----> Load config file
+               ----> Request
+               ----> Router
+               ----> (Controller <----> Model)
+               ----> Response
+               ----> Json
+               ----> View
+    ```
+
+## Modules Description:
 ...
 
 ## How to use ?
@@ -90,7 +95,7 @@ Run：
 
 **Web Server Mode:**
 
-Quick Start:
+## Quick Start:
 ```
 
 ```

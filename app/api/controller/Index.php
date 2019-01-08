@@ -2,12 +2,13 @@
 
 namespace App\Api\Controller;
 
-use Framework\ApiController;
+use Framework\Controller;
 use Framework\Response;
 
-class Index extends ApiController
+class Index extends Controller
 {
-    function hello(){
+    function hello()
+    {
         return 'Hello E-PHP';
     }
 

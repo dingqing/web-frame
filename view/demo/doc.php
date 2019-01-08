@@ -6,11 +6,11 @@
         <?php
         foreach ($tickets as $value) {
             echo $value . '<br/>';
-        }?>
+        } ?>
     </li>
     <li>
         <p>Redis。</p>
-        <div>redisK：<?php echo $redisK;?></div>
+        <div>redisK：<?php echo $redisK; ?></div>
     </li>
 </ul>
 

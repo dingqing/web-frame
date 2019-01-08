@@ -9,8 +9,8 @@ class Redis
 {
     public static function init()
     {
-        $config = App::$configs;
-        $config = $config['redis'];
+        $configs = App::$container->getSingle('config')->config;
+        $config = $configs['redis'];
         $redis = new rootRedis();
         $redis->connect($config['host'], $config['port']);
         return $redis;

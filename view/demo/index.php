@@ -9,9 +9,10 @@
     <p></p>
     <div class="card">
         <div class="card-body">
-            <h3><a class="badge badge-pill badge-primary" target="_blank" href="https://github.com/dingqing/e-php">GitHub</a>
-            <span class="badge badge-pill badge-success">Quick Start</span>
-                </h3>
+            <h3>
+                <a class="badge badge-pill badge-primary" target="_blank" href="https://github.com/dingqing/e-php">GitHub</a>
+                <a class="badge badge-pill badge-success" href="/index/doc">Quick Start</a>
+            </h3>
         </div>
     </div>
 </div>

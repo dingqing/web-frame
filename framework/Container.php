@@ -2,26 +2,12 @@
 
 namespace Framework;
 
+use Framework\Exceptions\CoreHttpException;
+
 class Container
 {
     private $classMap = [];
     public $instanceMap = [];
-
-    public function register($rootPath)
-    {
-        App::$configs = include $rootPath . 'config/common.php';
-
-        require $rootPath.'vendor/autoload.php';
-
-        $nosqls = ['redis'];
-        foreach ($nosqls as $v) {
-            $className = 'Framework\Nosql\\' . ucfirst($v);
-            $this->setSingle($v, function () use ($className) {
-                // lazy load
-                return $className::init();
-            });
-        }
-    }
 
     public function set($alias = '', $objectName = '')
     {
@@ -65,7 +51,7 @@ class Container
     public function setSingle($alias = '', $object = '')
     {
         if (is_callable($alias)) {
-            $instance  = $alias();
+            $instance = $alias();
             $className = get_class($instance);
             $this->instanceMap[$className] = $instance;
             return $instance;
@@ -113,7 +99,7 @@ class Container
     /**
      * get a sington instance
      *
-     * @param  string  $alias
+     * @param  string $alias
      * @param  Closure $closure
      * @return object
      */
