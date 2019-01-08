@@ -11,6 +11,8 @@ class Container
     {
         App::$configs = include $rootPath . 'config/common.php';
 
+        require $rootPath.'vendor/autoload.php';
+
         $nosqls = ['redis'];
         foreach ($nosqls as $v) {
             $className = 'Framework\Nosql\\' . ucfirst($v);

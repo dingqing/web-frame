@@ -86,7 +86,7 @@ README.md
 
 ## How to use ?
 Run：
-> composer require niumeng/e-php
+> composer require dingqing/e-php
 
 **Web Server Mode:**
 
