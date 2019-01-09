@@ -7,65 +7,71 @@
 ### 说明
 - 基本功能：
     - 单一入口，加载配置，自动加载，错误、异常处理，路由，
-    - 请求，响应，mvc，orm，视图，
-    - ioc，
+    - 请求，响应，MVC，ORM，视图，
+    - Ioc，
     - Swoole模式
 - 工具
-    - git钩子配置，travis，phpunit，
+    - Git钩子配置，Travis，apiDoc
 - Todos：
-    - phpunit，命令行工具，
-    - docker
+    - PHPUnit，命令行工具，
+    - Docker
     - Vue
 ### 依赖
 - [SeasLog](https://github.com/SeasX/SeasLog)
 ### 目录一览
 ```
-app
+.git-hooks                 [git钩子目录]
+    └─ pre-commit            [预commit钩子示例文件]
+    └─ commit-msg            [commit-msg示例文件]
+app                        [应用目录]
     ├─ api                 [api模块]
         ├─ controller
         ├─ model
     ├─ demo                [默认模块]
         ├─ controller
         ├─ model
-config                     [配置目录]
-    ├─ common.php          [公共配置]
-    ├─ swoole.php          [swoole配置]
-    └─ nosql.php           [nosql配置]
+config                     [框架配置目录]
+    ├─ common.php          
 docs                       [接口文档目录]
-framework                  [核心框架目录]
-    └─ APP.php             [框架类]
+framework                  [框架目录]
+    ├─ exceptions
+    ├─ handles             [处理机制目录]
+        └─ ConfigHandle.php  [框架配置]
+        └─ EnvHandle.php     [业务配置]
+        └─ ErrorHandle.php   [错误、异常处理]
+        └─ Handle.php        [处理接口]
+        └─ Log.php           [log]
+        └─ Nosql.php         [Nosql]
+        └─ Router.php        [路由]
+    ├─ nosql               [nosql处理目录]
+    └─ App.php             [框架类]
     └─ Container.php       [Ioc容器]
-    └─ ErrorHandle.php     [错误处理机制类]
-    └─ Log.php             [log机制类]
+    └─ Load.php            [自动加载]
     └─ Request.php         [请求类]
     └─ Response.php        [响应类]
-    └─ Router.php          [路由策略]
-    └─ run.php             [框架应用启用脚本]
+    └─ run.php             [fpm应用启用脚本]
+    └─ swoole.php          [swoole应用启用脚本]
     └─ View.php            [视图类]
 public                     [公共资源目录，暴露到万维网]
-    ├─ dist                [前端build之后的资源目录，build生成的目录，不是发布分支忽略该目录]
-    └─ ...
-    └─ index.html          [前端入口文件,build生成的文件，不是发布分支忽略该文件]
-├─ index.php               [后端入口文件]
-├─ server.php              [swoole模式后端入口文件]
+├─ index.php               [fpm应用入口文件]
+├─ server.php              [swoole应用入口文件]
 runtime                    [临时目录]
-    ├─ logs                [日志目录]
-    ├─ build               [php打包生成phar文件目录]
+    ├─ logs                  [日志目录]
+    ├─ build                 [php打包生成phar文件目录]
 tests                      [单元测试目录]
-    ├─ demo                [模块名称]
-        └─ DemoTest.php    [测试演示]
-    ├─ TestCase.php        [测试用例]
+    ├─ demo                  [模块名称]
+        └─ DemoTest.php        [测试演示]
+    ├─ TestCase.php          [测试用例]
 vendor                     [composer目录]
 view
-.git-hooks                 [git钩子目录]
-    ├─ pre-commit          [git pre-commit预commit钩子示例文件]
-    ├─ commit-msg          [git commit-msg示例文件]
-.gitignore                 [git忽略文件配置]
-.travis.yml                [travis-ci配置文件]
-composer.json              [composer配置文件]
-composer.lock              [composer lock文件]
-README-CN.md               [中文版readme文件]
-README.md                  [readme文件]
+.env.example               [业务配置示例文件]  
+.gitignore                 
+.travis.yml                [travis-ci配置]
+composer.json              [composer配置]
+composer.lock              
+phpunit.xml                [PHPUnit配置文件]
+README-CN.md               
+README.md                  
  ```
 
 
