@@ -1,4 +1,5 @@
-# e-php
+<p align="center"><img width="50%" src="./logo.png"><p>
+
 A Faster Lightweight Full-Stack PHP Framework
 
 <p align="center"> <a href="./README-CN.md">中文版</a>　<p>
