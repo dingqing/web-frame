@@ -7,16 +7,20 @@ use Framework\Request;
 
 Class RouterHandle implements Handle
 {
-    public function register(App $app)
+    public $module = '';
+    public $controller = '';
+    public $action = '';
+    public $params = [];
+
+    public function register(App $app, $routeStrategy='')
     {
         App::$container->setSingle('router', $this);
 
-        $configs = App::$container->getSingle('config')->config;
-
-        $this->parseUrl($configs['defaultModule'], $configs['defaultController'], $configs['defaultAction']);
-
-        //check params
-        $this->params = Request::check($this->params);
+        // if it is from microService
+        if (!$routeStrategy) {
+            $configs = App::$container->getSingle('config')->config;
+            $this->parseUrl($configs['defaultModule'], $configs['defaultController'], $configs['defaultAction']);
+        }
 
         /* dispatch */
         $this->controller = ucfirst($this->controller);
@@ -30,7 +34,6 @@ Class RouterHandle implements Handle
     public function parseUrl($m, $c, $a)
     {
         $params = [];
-
         if (strpos($_SERVER['REQUEST_URI'], 'index.php')) {
             if (isset($_REQUEST['m'])) $m = $_REQUEST['m'];
             if (isset($_REQUEST['c'])) $c = $_REQUEST['c'];
@@ -60,6 +63,10 @@ Class RouterHandle implements Handle
             }
         }
 
+        //check params
+        Request::check($params);
+
         list($this->module, $this->controller, $this->action, $this->params) = [$m, $c, $a, $params];
+
     }
 }
