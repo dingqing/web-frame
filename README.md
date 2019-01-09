@@ -3,72 +3,80 @@ A Faster Lightweight Full-Stack PHP Framework
 
 <p align="center"> <a href="./README-CN.md">中文版</a>　<p>
 
+> If it's helpful for you, welcome to "Star" to support, Thanks!
+  
+> You can also "follow", the project will be continuously updated and continuously improved.
+  
+> If you have questions or good suggestions, you can mention them in `Issues`.
 
 ### Features
 - Basic：
-    - Entry file, Load config file, autoload, Register error(and exception) function, Router, 
-    - Request, Response, mvc, orm, View, 
-    - ioc, 
+    - Entry file, Load config file, autoload, Register error and exception functions, Router, 
+    - Request, Response, MVC, ORM, View, 
+    - Ioc, 
     - Swoole mode
 - Tools：
-    - git hook configuration, travis, phpunit,
+    - Git hook configuration, Travis, apiDoc,
 - Todos：
-    - command line tool
-    - docker
+    - PHPUnit, command line tool
+    - Docker
     - Vue integrations
 ### Dependencies
 - [SeasLog](https://github.com/SeasX/SeasLog)
 ###  Project Directory Structure
 ```
-app
-    ├─ api                 [api module]
+.git-hooks               
+    └─ pre-commit         
+    └─ commit-msg        
+app                      [application dir]
+    ├─ api               [api module]
         ├─ controller
         ├─ model
-    ├─ demo                [default module]
+    ├─ demo              [default module]
         ├─ controller
         ├─ model
-config                     [config dir]
-    ├─ common.php          [public configs]
-    ├─ swoole.php          [swoole]
-    └─ nosql.php           [nosql]
-docs                       [api doc]
-framework                  [framework dir]
-    └─ APP.php             
-    └─ Container.php       [Ioc]
-    └─ ErrorHandle.php     
-    └─ Log.php             
-    └─ Request.php         
-    └─ Response.php        
-    └─ Router.php          
-    └─ run.php             
-    └─ View.php            
-public                     
-    ├─ dist                
-    └─ ...
-    └─ index.html          
-├─ index.php               
-├─ server.php              
-runtime                    
-    ├─ logs                
-    ├─ build               
-tests                      
-    ├─ demo                
-        └─ DemoTest.php    
-    ├─ TestCase.php        
-vendor                     
+config                   [config dir]
+    ├─ common.php          
+docs                     [api doc]
+framework                [framework dir]
+    ├─ exceptions
+    ├─ handles           
+        └─ ConfigHandle.php  [framework configs]
+        └─ EnvHandle.php     [business configs]
+        └─ ErrorHandle.php   [error and exceptions handle、异常处理]
+        └─ Handle.php        [Handle interface]
+        └─ Log.php           
+        └─ Nosql.php         
+        └─ Router.php
+    ├─ storage           [nosql、mq handles dir]
+    └─ App.php           [framework class]
+    └─ Container.php     [Ioc container]
+    └─ Load.php          [autoloader]
+    └─ Request.php       
+    └─ Response.php      
+    └─ run.php           [fpm application start file]
+    └─ swoole.php        [swoole application start file]
+    └─ View.php          [view class]
+public                   
+    └─ index.php             [fpm application entry]
+    └─ server.php            [swoole application entry]
+runtime                  
+    ├─ logs                  
+    ├─ build                 [phar files dir]
+tests                    [phpunit dir]
+    ├─ demo                  [module dir]
+        └─ DemoTest.php         
+    ├─ TestCase.php          
+vendor                   [composer dir]
 view
-.git-hooks                 
-    ├─ pre-commit          
-    ├─ commit-msg          
+.env.example             [business configs example]  
 .gitignore                 
-.travis.yml                
-LICENSE                    
-logo.png                   
-composer.json              
+.travis.yml              [travis-ci config]
+composer.json            [composer config]
 composer.lock              
-package.json               
+phpunit.xml              [PHPUnit config]
 README-CN.md               
-README.md                  
+README.md              
  ```
 
 ## Develop

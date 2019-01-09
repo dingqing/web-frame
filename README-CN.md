@@ -3,6 +3,11 @@
 
 <p align="center"> <a href="./README.md">英文版</a>　<p>
 
+> 如果对您有帮助，欢迎 "Star" 支持一下！
+
+> 您也可以 "follow" 一下，该项目将持续更新，不断完善。
+
+> 如有问题或者好的建议可以在 `Issues` 中提。
 
 ### 说明
 - 基本功能：
@@ -20,58 +25,58 @@
 - [SeasLog](https://github.com/SeasX/SeasLog)
 ### 目录一览
 ```
-.git-hooks                 [git钩子目录]
-    └─ pre-commit            [预commit钩子示例文件]
-    └─ commit-msg            [commit-msg示例文件]
-app                        [应用目录]
-    ├─ api                 [api模块]
+.git-hooks               [git钩子目录]
+    └─ pre-commit            [预commit钩子示例]
+    └─ commit-msg            [commit-msg示例]
+app                      [应用目录]
+    ├─ api               [api模块]
         ├─ controller
         ├─ model
-    ├─ demo                [默认模块]
+    ├─ demo              [默认模块]
         ├─ controller
         ├─ model
-config                     [框架配置目录]
+config                   [框架配置目录]
     ├─ common.php          
-docs                       [接口文档目录]
-framework                  [框架目录]
+docs                     [接口文档目录]
+framework                [框架目录]
     ├─ exceptions
-    ├─ handles             [处理机制目录]
+    ├─ handles           [处理机制目录]
         └─ ConfigHandle.php  [框架配置]
         └─ EnvHandle.php     [业务配置]
         └─ ErrorHandle.php   [错误、异常处理]
         └─ Handle.php        [处理接口]
-        └─ Log.php           [log]
-        └─ Nosql.php         [Nosql]
+        └─ Log.php           
+        └─ Nosql.php         
         └─ Router.php        [路由]
-    ├─ nosql               [nosql处理目录]
-    └─ App.php             [框架类]
-    └─ Container.php       [Ioc容器]
-    └─ Load.php            [自动加载]
-    └─ Request.php         [请求类]
-    └─ Response.php        [响应类]
-    └─ run.php             [fpm应用启用脚本]
-    └─ swoole.php          [swoole应用启用脚本]
-    └─ View.php            [视图类]
-public                     [公共资源目录，暴露到万维网]
-├─ index.php               [fpm应用入口文件]
-├─ server.php              [swoole应用入口文件]
-runtime                    [临时目录]
+    ├─ storage           [nosql、消息队列等处理目录]
+    └─ App.php           [框架类]
+    └─ Container.php     [Ioc容器]
+    └─ Load.php          [自动加载]
+    └─ Request.php       
+    └─ Response.php      
+    └─ run.php           [fpm应用启用脚本]
+    └─ swoole.php        [swoole应用启用脚本]
+    └─ View.php          [视图类]
+public                   [公共资源目录，暴露到万维网]
+    └─ index.php             [fpm应用入口]
+    └─ server.php            [swoole应用入口]
+runtime                  [临时目录]
     ├─ logs                  [日志目录]
     ├─ build                 [php打包生成phar文件目录]
-tests                      [单元测试目录]
+tests                    [单元测试目录]
     ├─ demo                  [模块名称]
-        └─ DemoTest.php        [测试演示]
+        └─ DemoTest.php         [测试演示]
     ├─ TestCase.php          [测试用例]
-vendor                     [composer目录]
+vendor                   [composer目录]
 view
-.env.example               [业务配置示例文件]  
+.env.example             [业务配置示例]  
 .gitignore                 
-.travis.yml                [travis-ci配置]
-composer.json              [composer配置]
+.travis.yml              [travis-ci配置]
+composer.json            [composer配置]
 composer.lock              
-phpunit.xml                [PHPUnit配置文件]
+phpunit.xml              [PHPUnit配置]
 README-CN.md               
-README.md                  
+README.md             
  ```
 
 

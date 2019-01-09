@@ -14,7 +14,7 @@ Class NosqlHandle implements Handle
     {
         $nosqls = ['redis'];
         foreach ($nosqls as $v) {
-            $className = 'Framework\Nosql\\' . ucfirst($v);
+            $className = 'Framework\Storage\\' . ucfirst($v);
             App::$container->setSingle($v, function () use ($className) {
                 // lazy load
                 return $className::init();
