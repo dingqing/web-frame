@@ -100,7 +100,7 @@ README.md
 
 ## How to use ?
 Run：
-> composer require dingqing/e-php
+> composer create-project dingqing/e-php
 
 **Web Server Mode:**
 
