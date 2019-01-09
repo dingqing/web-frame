@@ -17,7 +17,8 @@
       "email": "dingqing54@gmail.com"
     }
   ],
-  "minimum-stability": "stable",
+  "minimum-stability": "dev",
+  "prefer-stable": true,
   "scripts": {
     "post-install-cmd": [
       "composer dump-autoload --optimize"
