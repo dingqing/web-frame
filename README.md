@@ -2,7 +2,7 @@
 
 A Faster Lightweight Full-Stack PHP Framework
 
-<p align="center"> <a href="./README-CN.md">中文版</a>　<p>
+<p align="center"> <a href="./README-CN.md">Chinese version</a>　<p>
 
 > If it's helpful for you, welcome to "Star" to support, Thanks!
   

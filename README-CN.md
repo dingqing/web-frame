@@ -2,7 +2,7 @@
 
 造轮子系列，实现一个PHP轻量、全栈开发框架
 
-<p align="center"> <a href="./README.md">英文版</a>　<p>
+<p align="center"> <a href="./README.md">English version</a>　<p>
 
 > 如果对您有帮助，欢迎 "Star" 支持一下！
 
