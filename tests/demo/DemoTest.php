@@ -11,7 +11,7 @@ class DemoTest extends TestCase
     {
         $this->assertEquals(
             'Hello E-PHP',
-            App::$app->get('api/index/hello')
+            App::$app->get('api/index/index')
         );
     }
 }

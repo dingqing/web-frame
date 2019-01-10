@@ -60,10 +60,10 @@ class App
             throw new CoreHttpException(400);
         }
 
-        $router  = self::$container->get('router');
-        $router->module     = $requestUri[0];
+        $router = self::$container->get('router');
+        $router->module = $requestUri[0];
         $router->controller = $requestUri[1];
-        $router->action     = $requestUri[2];
+        $router->action = $requestUri[2];
         $router->register($this, 'microService');
         return $this->responseData;
     }
