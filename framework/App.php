@@ -12,7 +12,7 @@ class App
     public static $container;
 
     public $runningMode = 'fpm';
-    private $responseData;
+    private $responseData='hello e-php';
 
     public function __construct($rootPath, Closure $loader)
     {

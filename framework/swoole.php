@@ -1,7 +1,6 @@
 <?php
 
 use Framework\Handles\ErrorHandle;
-use Framework\Handles\ExceptionHandle;
 use Framework\Handles\EnvHandle;
 use Framework\Handles\RouterSwooleHandle;
 use Framework\Handles\ConfigHandle;
