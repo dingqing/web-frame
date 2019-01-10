@@ -202,39 +202,82 @@ README.md
     ```
     ab -c 1000 -n 10000 -r http://localhost:84/
     ```
+    Server Software:        
+    Server Hostname:        localhost
+    Server Port:            84
+    
     Document Path:          /
     Document Length:        0 bytes
     
     Concurrency Level:      1000
-    Time taken for tests:   0.733 seconds
+    Time taken for tests:   0.708 seconds
     Complete requests:      10000
     Failed requests:        10128
        (Connect: 0, Receive: 128, Length: 9680, Exceptions: 320)
-    Non-2xx responses:      9179
-    Total transferred:      4176950 bytes
-    HTML transferred:       2588410 bytes
-    Requests per second:    13650.22 [#/sec] (mean)
-    Time per request:       73.259 [ms] (mean)
-    Time per request:       0.073 [ms] (mean, across all concurrent requests)
-    Transfer rate:          5568.00 [Kbytes/sec] received
+    Non-2xx responses:      8856
+    Total transferred:      4576840 bytes
+    HTML transferred:       3030720 bytes
+    Requests per second:    14115.22 [#/sec] (mean)
+    Time per request:       70.845 [ms] (mean)
+    Time per request:       0.071 [ms] (mean, across all concurrent requests)
+    Transfer rate:          6308.90 [Kbytes/sec] received
     
     Connection Times (ms)
                   min  mean[+/-sd] median   max
-    Connect:       12   21   3.4     22      33
-    Processing:     9   39  38.0     33     294
-    Waiting:        0   32  38.5     27     285
-    Total:         31   61  38.1     54     317
+    Connect:        9   23   4.5     23      35
+    Processing:    10   41  29.4     35     209
+    Waiting:        0   34  29.7     28     203
+    Total:         27   64  29.9     57     228
     
     Percentage of the requests served within a certain time (ms)
-      50%     54
-      66%     55
-      75%     56
-      80%     58
-      90%     61
-      95%     65
-      98%    240
-      99%    266
-     100%    317 (longest request)
+      50%     57
+      66%     60
+      75%     62
+      80%     62
+      90%     68
+      95%    153
+      98%    181
+      99%    187
+     100%    228 (longest request)
     ```
     - Swoole
+    
+    ab -c 1000 -n 10000 -r http://localhost:8888/
+    ```
+    Server Software:        swoole-http-server
+    Server Hostname:        localhost
+    Server Port:            8888
+    
+    Document Path:          /
+    Document Length:        13 bytes
+    
+    Concurrency Level:      1000
+    Time taken for tests:   0.631 seconds
+    Complete requests:      10000
+    Failed requests:        0
+    Total transferred:      1840000 bytes
+    HTML transferred:       130000 bytes
+    Requests per second:    15840.05 [#/sec] (mean)
+    Time per request:       63.131 [ms] (mean)
+    Time per request:       0.063 [ms] (mean, across all concurrent requests)
+    Transfer rate:          2846.26 [Kbytes/sec] received
+    
+    Connection Times (ms)
+                  min  mean[+/-sd] median   max
+    Connect:        5   12   3.7     12      22
+    Processing:     2   13   3.6     13      27
+    Waiting:        1    7   2.3      7      20
+    Total:         17   25   3.1     24      43
+    
+    Percentage of the requests served within a certain time (ms)
+      50%     24
+      66%     25
+      75%     25
+      80%     25
+      90%     27
+      95%     33
+      98%     35
+      99%     41
+     100%     43 (longest request)
+    ```
 ### 问题和贡献
