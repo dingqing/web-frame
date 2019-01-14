@@ -161,6 +161,7 @@
     13. Job模式
     14. 接口文档生成和接口模拟模块
         - 使用 [apidoc](https://github.com/apidoc/apidoc)
+        - [使用示例](https://github.com/dingqing/apidoc-demo)
     15. 单元测试
         - 如何使用？
         tests目录下编写测试文件，具体参考tests/demo目录下的DemoTest文件,然后运行：
