@@ -7,11 +7,11 @@ use Closure;
 class App
 {
     public static $rootPath;
-
-    private $notOutput = false;
     public static $container;
 
     public $runningMode = 'fpm';
+
+    private $notOutput = false;
     private $responseData='hello e-php';
 
     public function __construct($rootPath, Closure $loader)
@@ -28,44 +28,6 @@ class App
     public function load(Closure $handle)
     {
         $this->handlesList[] = $handle;
-    }
-
-    /**
-     * inner call get
-     */
-    public function get($uri = '', $argus = array())
-    {
-        return $this->callSelf('get', $uri, $argus);
-    }
-
-    public function post($uri = '', $argus = array())
-    {
-        return $this->callSelf('post', $uri, $argus);
-    }
-
-    public function put($uri = '', $argus = array())
-    {
-        return $this->callSelf('put', $uri, $argus);
-    }
-
-    public function delete($uri = '', $argus = array())
-    {
-        return $this->callSelf('delete', $uri, $argus);
-    }
-
-    public function callSelf($method = '', $uri = '', $argus = array())
-    {
-        $requestUri = explode('/', $uri);
-        if (count($requestUri) !== 3) {
-            throw new CoreHttpException(400);
-        }
-
-        $router = self::$container->get('router');
-        $router->module = $requestUri[0];
-        $router->controller = $requestUri[1];
-        $router->action = $requestUri[2];
-        $router->register($this, 'microService');
-        return $this->responseData;
     }
 
     public function run(Closure $request)
