@@ -21,11 +21,12 @@
 - 说明
     - 依赖
     [SeasLog](https://github.com/SeasX/SeasLog)
+    - 服务
+    Nosql，日志模块
     - 工具
-    Git钩子配置，Travis，apiDoc接口文档，辅助脚本
+    Git钩子配置，Travis，PHPUnit单元测试，apiDoc接口文档
+    命令行工具，Docker
     - Todos
-    PHPUnit，命令行工具，
-    Docker
     Vue
 - 目录结构
     ```
@@ -102,13 +103,15 @@
     ```
 ### 3.模块说明
 - 入口文件
-[[file: public/index.php](public/index.php)]
-- 自加载模块
-- 错误和异常模块
-- 配置文件模块
+
+    [[file: public/index.php](public/index.php)]
+- 自动加载
+- 错误和异常处理
+- 配置文件
 - 服务容器
-把直接依赖转变为依赖于第三方，获取依赖的实例直接通过第三方去完成以达到松耦合的目的。
-如：把Request,Config等实例都以单例的方式注入到服务容器中，需要使用时从容器中获取即可。
+
+    把直接依赖转变为依赖于第三方，获取依赖的实例直接通过第三方去完成以达到松耦合的目的。
+    如：把Request,Config等实例都以单例的方式注入到服务容器中，需要使用时从容器中获取即可。
     ```
     // 注入单例
     App::$container->setSingle('别名，方便获取', '对象/闭包/类名');
@@ -121,23 +124,27 @@
     // 获取Request对象
     App::$container->get('request');
     ```
-[[file: framework/Container](https://github.com/dingqing/e-php/blob/master/framework/Container.php)]
+    [[file: framework/Container](https://github.com/dingqing/e-php/blob/master/framework/Container.php)]
 - Nosql模块
-提供全局单例对象，在框架启动时，读取配置把需要的nosql实例注入到服务容器中。目前支持redis，可实现更多如memcahed/mongodb。
+
+    提供全局单例对象，在框架启动时，读取配置把需要的nosql实例注入到服务容器中。目前支持redis，可实现更多如memcahed/mongodb。
     ```
     // 获取redis对象
     App::$container->getSingle('redis');
     ```
-[[file: framework/storage/*](https://github.com/dingqing/e-php/tree/master/framework/storage)]
+    [[file: framework/storage/*](https://github.com/dingqing/e-php/tree/master/framework/storage)]
 - 日志模块
-目前使用 [SeasLog](https://github.com/SeasX/SeasLog)
+
+    目前使用 [SeasLog](https://github.com/SeasX/SeasLog)
 - 输入和输出
 - 路由模块
 - 从MVC到MCL
-V：视图交给前端，后端只提供数据，
-L：将业务逻辑代码提出到logic层，为多出的L层，利于代码维护和扩展。
+
+    V：视图交给前端，后端只提供数据，
+    L：将业务逻辑代码提出到logic层，为多出的L层，利于代码维护和扩展。
 - 数据库对象关系映射ORM
-使用的 [Medoo](https://github.com/catfan/Medoo)
+
+    使用的 [Medoo](https://github.com/catfan/Medoo)
 - 使用Vue作为视图
 - Swoole模式
     ```
@@ -145,16 +152,19 @@ L：将业务逻辑代码提出到logic层，为多出的L层，利于代码维�
     ```
     然后访问[http://localhost:8888/](http://localhost:8888/)
 - Job模式
-可以在jobs目录编写任务脚本
-- 接口文档生成和接口模拟模块
-使用 [apidoc](https://github.com/apidoc/apidoc)
-[使用示例](https://github.com/dingqing/apidoc-demo)
+
+    可以在jobs目录编写任务脚本
+- 接口文档生成和接口模拟
+
+    使用 [apidoc](https://github.com/apidoc/apidoc)
+    [使用示例](https://github.com/dingqing/apidoc-demo)
 - 单元测试
-使用：tests目录下编写测试文件，具体参考tests/demo目录下的DemoTest文件,然后运行：
+
+    使用：tests目录下编写测试文件，具体参考tests/demo目录下的DemoTest文件,然后运行：
     ```
      vendor/bin/phpunit
     ```
-示例：
+    示例：
     ```
     /**
      *　演示测试
@@ -168,24 +178,27 @@ L：将业务逻辑代码提出到logic层，为多出的L层，利于代码维�
         );
     }
     ```
-[[file: tests/*](https://github.com/dingqing/e-php/tree/master/tests)]
-[phpunit断言文档语法参考](https://phpunit.de/manual/current/zh_cn/appendixes.assertions.html)
+    [[file: tests/*](https://github.com/dingqing/e-php/tree/master/tests)]
+    [phpunit断言文档语法参考](https://phpunit.de/manual/current/zh_cn/appendixes.assertions.html)
 - Git钩子配置
-目的：规范化我们的项目代码和commit记录。
-代码规范：配合使用php_codesniffer，在代码提交前对代码的编码格式进行强制验证。
-commit-msg规范：采用ruanyifeng的commit msg规范，对commit msg进行格式验证，增强git log可读性和便于后期查错和统计log等, 这里使用了[Treri](https://github.com/Treri)的commit-msg脚本，Thx~。
-[[file: ./git-hooks/*](https://github.com/dingqing/e-php/tree/master/.git-hooks)]
+
+    目的：规范化我们的项目代码和commit记录。
+    代码规范：配合使用php_codesniffer，在代码提交前对代码的编码格式进行强制验证。
+    commit-msg规范：采用ruanyifeng的commit msg规范，对commit msg进行格式验证，增强git log可读性和便于后期查错和统计log等, 这里使用了[Treri](https://github.com/Treri)的commit-msg脚本，Thx~。
+    [[file: ./git-hooks/*](https://github.com/dingqing/e-php/tree/master/.git-hooks)]
 - 辅助脚本
-如何使用?
+
+    如何使用?
     ```
     composer create-project dingqing/e-php
     ```
-Swoole模式:
+    Swoole模式:
     ```
     cd public && php server.php
     ```
 - docker环境
-...
+
+    ...
 - 性能
     - fpm
     ```
