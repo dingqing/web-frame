@@ -20,15 +20,10 @@
     ```
 - 说明
     - 依赖
-    
     [SeasLog](https://github.com/SeasX/SeasLog)
-
     - 工具
-    
     Git钩子配置，Travis，apiDoc接口文档，辅助脚本
-
     - Todos
-    
     PHPUnit，命令行工具，
     Docker
     Vue
@@ -106,181 +101,180 @@
     }
     ```
 ### 3.模块说明
-    - 入口文件
-    [[file: public/index.php](public/index.php)]
-    - 自加载模块
-    - 错误和异常模块
-    - 配置文件模块
-    - 服务容器
+- 入口文件
+[[file: public/index.php](public/index.php)]
+- 自加载模块
+- 错误和异常模块
+- 配置文件模块
+- 服务容器
+把直接依赖转变为依赖于第三方，获取依赖的实例直接通过第三方去完成以达到松耦合的目的。
+如：把Request,Config等实例都以单例的方式注入到服务容器中，需要使用时从容器中获取即可。
+    ```
+    // 注入单例
+    App::$container->setSingle('别名，方便获取', '对象/闭包/类名');
     
-    把直接依赖转变为依赖于第三方，获取依赖的实例直接通过第三方去完成以达到松耦合的目的。
-    如：把Request,Config等实例都以单例的方式注入到服务容器中，需要使用时从容器中获取即可。
-        ```
-        // 注入单例
-        App::$container->setSingle('别名，方便获取', '对象/闭包/类名');
-        
-        // 例，注入Request实例
-        App::$container->setSingle('request', function () {
-            // 匿名函数懒加载
-            return new Request();
-        });
-        // 获取Request对象
-        App::$container->get('request');
-        ```
-    [[file: framework/Container](https://github.com/dingqing/e-php/blob/master/framework/Container.php)]
-    - Nosql模块
-    提供全局单例对象，在框架启动时，读取配置把需要的nosql实例注入到服务容器中。目前支持redis，可实现更多如memcahed/mongodb。
-        ```
-        // 获取redis对象
-        App::$container->getSingle('redis');
-        ```
-    [[file: framework/storage/*](https://github.com/dingqing/e-php/tree/master/framework/storage)]
-    - 日志模块
-    目前使用 [SeasLog](https://github.com/SeasX/SeasLog)
-    - 输入和输出
-    - 路由模块
-    - 从MVC到MCL
-    V：视图交给前端，后端只提供数据，
-    L：将业务逻辑代码提出到logic层，为多出的L层，利于代码维护和扩展。
-    - 数据库对象关系映射ORM
-    使用的 [Medoo](https://github.com/catfan/Medoo)
-    - 使用Vue作为视图
-    - Swoole模式
-        ```
-        cd public && php server.php
-        ```
-        然后访问[http://localhost:8888/](http://localhost:8888/)
-    - Job模式
-    可以在jobs目录编写任务脚本
-    - 接口文档生成和接口模拟模块
-    使用 [apidoc](https://github.com/apidoc/apidoc)
-    [使用示例](https://github.com/dingqing/apidoc-demo)
-    - 单元测试
-    使用：tests目录下编写测试文件，具体参考tests/demo目录下的DemoTest文件,然后运行：
-        ```
-         vendor/bin/phpunit
-        ```
-    示例：
-        ```
-        /**
-         *　演示测试
-         */
-        public function testDemo()
-        {
-            $this->assertEquals(
-                'Hello E- PHP',
-                // 执行demo模块index控制器index操作，断言结果是不是等于'Hello E- PHP'　
-                App::$app->get('api/index/index')
-            );
-        }
-        ```
-    [[file: tests/*](https://github.com/dingqing/e-php/tree/master/tests)]
-    [phpunit断言文档语法参考](https://phpunit.de/manual/current/zh_cn/appendixes.assertions.html)
-    - Git钩子配置
-    目的：规范化我们的项目代码和commit记录。
-    代码规范：配合使用php_codesniffer，在代码提交前对代码的编码格式进行强制验证。
-    commit-msg规范：采用ruanyifeng的commit msg规范，对commit msg进行格式验证，增强git log可读性和便于后期查错和统计log等, 这里使用了[Treri](https://github.com/Treri)的commit-msg脚本，Thx~。
-    [[file: ./git-hooks/*](https://github.com/dingqing/e-php/tree/master/.git-hooks)]
-    - 辅助脚本
-    如何使用?
-        ```
-        composer create-project dingqing/e-php
-        ```
-    Swoole模式:
-        ```
-        cd public && php server.php
-        ```
-    - docker环境
-    ...
-    - 性能
-        - fpm
-        ```
-        8核8G
-        fpm配置：
-        pm = dynamic
-        pm.max_children = 5
-        pm.start_servers = 2
-        pm.min_spare_servers = 1
-        pm.max_spare_servers = 3
-        ```
-        ab -c 1000 -n 10000 -r http://localhost:84/
-        ```
-        Server Software:        
-        Server Hostname:        localhost
-        Server Port:            84
-        
-        Document Path:          /
-        Document Length:        0 bytes
-        
-        Concurrency Level:      1000
-        Time taken for tests:   0.708 seconds
-        Complete requests:      10000
-        Failed requests:        10128
-           (Connect: 0, Receive: 128, Length: 9680, Exceptions: 320)
-        Non-2xx responses:      8856
-        Total transferred:      4576840 bytes
-        HTML transferred:       3030720 bytes
-        Requests per second:    14115.22 [#/sec] (mean)
-        Time per request:       70.845 [ms] (mean)
-        Time per request:       0.071 [ms] (mean, across all concurrent requests)
-        Transfer rate:          6308.90 [Kbytes/sec] received
-        
-        Connection Times (ms)
-                      min  mean[+/-sd] median   max
-        Connect:        9   23   4.5     23      35
-        Processing:    10   41  29.4     35     209
-        Waiting:        0   34  29.7     28     203
-        Total:         27   64  29.9     57     228
-        
-        Percentage of the requests served within a certain time (ms)
-          50%     57
-          66%     60
-          75%     62
-          80%     62
-          90%     68
-          95%    153
-          98%    181
-          99%    187
-         100%    228 (longest request)
-        ```
-        - Swoole
-        ab -c 1000 -n 10000 -r http://localhost:8888/
-        ```
-        Server Software:        swoole-http-server
-        Server Hostname:        localhost
-        Server Port:            8888
-        
-        Document Path:          /
-        Document Length:        13 bytes
-        
-        Concurrency Level:      1000
-        Time taken for tests:   0.631 seconds
-        Complete requests:      10000
-        Failed requests:        0
-        Total transferred:      1840000 bytes
-        HTML transferred:       130000 bytes
-        Requests per second:    15840.05 [#/sec] (mean)
-        Time per request:       63.131 [ms] (mean)
-        Time per request:       0.063 [ms] (mean, across all concurrent requests)
-        Transfer rate:          2846.26 [Kbytes/sec] received
-        
-        Connection Times (ms)
-                      min  mean[+/-sd] median   max
-        Connect:        5   12   3.7     12      22
-        Processing:     2   13   3.6     13      27
-        Waiting:        1    7   2.3      7      20
-        Total:         17   25   3.1     24      43
-        
-        Percentage of the requests served within a certain time (ms)
-          50%     24
-          66%     25
-          75%     25
-          80%     25
-          90%     27
-          95%     33
-          98%     35
-          99%     41
-         100%     43 (longest request)
-        ```
+    // 例，注入Request实例
+    App::$container->setSingle('request', function () {
+        // 匿名函数懒加载
+        return new Request();
+    });
+    // 获取Request对象
+    App::$container->get('request');
+    ```
+[[file: framework/Container](https://github.com/dingqing/e-php/blob/master/framework/Container.php)]
+- Nosql模块
+提供全局单例对象，在框架启动时，读取配置把需要的nosql实例注入到服务容器中。目前支持redis，可实现更多如memcahed/mongodb。
+    ```
+    // 获取redis对象
+    App::$container->getSingle('redis');
+    ```
+[[file: framework/storage/*](https://github.com/dingqing/e-php/tree/master/framework/storage)]
+- 日志模块
+目前使用 [SeasLog](https://github.com/SeasX/SeasLog)
+- 输入和输出
+- 路由模块
+- 从MVC到MCL
+V：视图交给前端，后端只提供数据，
+L：将业务逻辑代码提出到logic层，为多出的L层，利于代码维护和扩展。
+- 数据库对象关系映射ORM
+使用的 [Medoo](https://github.com/catfan/Medoo)
+- 使用Vue作为视图
+- Swoole模式
+    ```
+    cd public && php server.php
+    ```
+    然后访问[http://localhost:8888/](http://localhost:8888/)
+- Job模式
+可以在jobs目录编写任务脚本
+- 接口文档生成和接口模拟模块
+使用 [apidoc](https://github.com/apidoc/apidoc)
+[使用示例](https://github.com/dingqing/apidoc-demo)
+- 单元测试
+使用：tests目录下编写测试文件，具体参考tests/demo目录下的DemoTest文件,然后运行：
+    ```
+     vendor/bin/phpunit
+    ```
+示例：
+    ```
+    /**
+     *　演示测试
+     */
+    public function testDemo()
+    {
+        $this->assertEquals(
+            'Hello E- PHP',
+            // 执行demo模块index控制器index操作，断言结果是不是等于'Hello E- PHP'　
+            App::$app->get('api/index/index')
+        );
+    }
+    ```
+[[file: tests/*](https://github.com/dingqing/e-php/tree/master/tests)]
+[phpunit断言文档语法参考](https://phpunit.de/manual/current/zh_cn/appendixes.assertions.html)
+- Git钩子配置
+目的：规范化我们的项目代码和commit记录。
+代码规范：配合使用php_codesniffer，在代码提交前对代码的编码格式进行强制验证。
+commit-msg规范：采用ruanyifeng的commit msg规范，对commit msg进行格式验证，增强git log可读性和便于后期查错和统计log等, 这里使用了[Treri](https://github.com/Treri)的commit-msg脚本，Thx~。
+[[file: ./git-hooks/*](https://github.com/dingqing/e-php/tree/master/.git-hooks)]
+- 辅助脚本
+如何使用?
+    ```
+    composer create-project dingqing/e-php
+    ```
+Swoole模式:
+    ```
+    cd public && php server.php
+    ```
+- docker环境
+...
+- 性能
+    - fpm
+    ```
+    8核8G
+    fpm配置：
+    pm = dynamic
+    pm.max_children = 5
+    pm.start_servers = 2
+    pm.min_spare_servers = 1
+    pm.max_spare_servers = 3
+    ```
+    ab -c 1000 -n 10000 -r http://localhost:84/
+    ```
+    Server Software:        
+    Server Hostname:        localhost
+    Server Port:            84
+    
+    Document Path:          /
+    Document Length:        0 bytes
+    
+    Concurrency Level:      1000
+    Time taken for tests:   0.708 seconds
+    Complete requests:      10000
+    Failed requests:        10128
+       (Connect: 0, Receive: 128, Length: 9680, Exceptions: 320)
+    Non-2xx responses:      8856
+    Total transferred:      4576840 bytes
+    HTML transferred:       3030720 bytes
+    Requests per second:    14115.22 [#/sec] (mean)
+    Time per request:       70.845 [ms] (mean)
+    Time per request:       0.071 [ms] (mean, across all concurrent requests)
+    Transfer rate:          6308.90 [Kbytes/sec] received
+    
+    Connection Times (ms)
+                  min  mean[+/-sd] median   max
+    Connect:        9   23   4.5     23      35
+    Processing:    10   41  29.4     35     209
+    Waiting:        0   34  29.7     28     203
+    Total:         27   64  29.9     57     228
+    
+    Percentage of the requests served within a certain time (ms)
+      50%     57
+      66%     60
+      75%     62
+      80%     62
+      90%     68
+      95%    153
+      98%    181
+      99%    187
+     100%    228 (longest request)
+    ```
+    - Swoole
+    ab -c 1000 -n 10000 -r http://localhost:8888/
+    ```
+    Server Software:        swoole-http-server
+    Server Hostname:        localhost
+    Server Port:            8888
+    
+    Document Path:          /
+    Document Length:        13 bytes
+    
+    Concurrency Level:      1000
+    Time taken for tests:   0.631 seconds
+    Complete requests:      10000
+    Failed requests:        0
+    Total transferred:      1840000 bytes
+    HTML transferred:       130000 bytes
+    Requests per second:    15840.05 [#/sec] (mean)
+    Time per request:       63.131 [ms] (mean)
+    Time per request:       0.063 [ms] (mean, across all concurrent requests)
+    Transfer rate:          2846.26 [Kbytes/sec] received
+    
+    Connection Times (ms)
+                  min  mean[+/-sd] median   max
+    Connect:        5   12   3.7     12      22
+    Processing:     2   13   3.6     13      27
+    Waiting:        1    7   2.3      7      20
+    Total:         17   25   3.1     24      43
+    
+    Percentage of the requests served within a certain time (ms)
+      50%     24
+      66%     25
+      75%     25
+      80%     25
+      90%     27
+      95%     33
+      98%     35
+      99%     41
+     100%     43 (longest request)
+    ```
 ### 4.问题和贡献
 ……
