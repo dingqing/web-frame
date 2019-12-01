@@ -16,8 +16,7 @@ Class EnvHandle implements Handle
         if ($env === false) {
             throw CoreHttpException('load env fail', 500);
         }
-        // $this->envParams = array_merge($_ENV, $env);
-        $this->envParams = $env;
+        $this->envParams = array_merge($_ENV, $env);
 
         App::$container->setSingle('env', $this);
     }

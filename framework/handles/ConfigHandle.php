@@ -12,7 +12,12 @@ Class ConfigHandle implements Handle
 {
     public function register(App $app)
     {
-        $this->config = include App::$rootPath . 'config/common.php';
+    	require(App::$rootPath . '/framework/helper.php');
+    	
+        $common = include App::$rootPath . 'config/common.php';
+        $nosql = include App::$rootPath . 'config/nosql.php';
+        $db = include App::$rootPath . 'config/db.php';
+        $this->config = array_merge($common, $nosql, $db);
 
         App::$container->setSingle('config', $this);
     }

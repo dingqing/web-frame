@@ -1,6 +1,8 @@
 <?php
 
-namespace Framework;
+namespace App;
+
+use Framework\App;
 
 class View
 {

@@ -1,8 +1,10 @@
 <?php
 
-namespace Framework;
+namespace App;
 
-class Controller
+use Framework\App;
+
+class ApiController
 {
     function __construct()
     {
@@ -15,6 +17,7 @@ class Controller
 
     public function __call($method, $b)
     {
-        View::load('common/error', ['msg' => 'function : ' . $method . ' not found.']);
+        Log::write();
+        Response::response('function : ' . $method . ' not found.');
     }
 }

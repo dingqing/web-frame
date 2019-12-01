@@ -2,7 +2,7 @@
 
 namespace App\Api\Controller;
 
-use Framework\Controller;
+use App\Controller;
 use Framework\Response;
 
 class Index extends Controller

@@ -1,5 +1,6 @@
 <p align="center"><img width="50%" src="./logo.png"><p>
-造轮子系列，实现一个PHP轻量、全栈开发框架
+造轮子系列，实现一个PHP轻量、全栈开发框架。
+_DIY is so funny!_
 <p align="center"><a href="./README-EN.md">English version</a><p>
 
 >如果对您有帮助，欢迎 "Star" 支持一下！
@@ -8,26 +9,42 @@
 
 >如有问题或者好的建议可以在 `Issues` 中提。
 
-### 1.介绍
-- 设计
-    ```
-    初始化   ---> 单一入口
-            ---> 自动加载、错误和异常处理、加载配置
-                 服务容器
-    处理请求 ---> 请求 ---> 输入和输出、路由
-            ---> MCL、ORM：（控制器 <---> 数据模型）---> json／视图
-    Swoole模式
-    ```
-- 说明
-    - 依赖
+### 1.快速开始
+- 安装依赖
     [SeasLog](https://github.com/SeasX/SeasLog)
-    - 服务
-    Nosql，日志模块
-    - 工具
-    Git钩子配置，Travis，PHPUnit单元测试，apiDoc接口文档
-    命令行工具，Docker
-    - Todos
-    Vue
+    ```
+    composer install
+    cp .env.example .env
+    ```
+- Nginx配置
+    ```
+    server{
+        ......
+        root path-to-e-php/public;
+        
+        location / {
+            try_files $uri $uri/ /index.php?$query_string;
+        }
+        ......
+    }
+    ```
+### 2.介绍
+框架初始化
+类别 | 说明
+--- | ---
+初始化 | 单一入口。初始化应用（，实现自动加载）、服务容器
+注册服务 | 注册服务（错误异常处理、框架配置、业务配置、日志、数据库服务、用户自定义启动时操作、路由）并分别初始化，启动应用
+
+处理请求
+类别 | 说明
+--- | ---
+输入输出 | 获取变量、检查变量，返回前数据格式
+路由转发 | 
+mvc实现 | MCL（数据模型 -- 控制器 -- 业务逻辑）---> json／视图
+
+开发工具：
+Docker，Git钩子配置，PHPUnit单元测试，
+apiDoc接口文档，命令行工具
 - 目录结构
     ```
     .git-hooks               [git钩子目录]
@@ -40,7 +57,7 @@
         ├─ demo              [默认模块]
             ├─ controller
             ├─ model
-    config                   [框架配置目录]
+    config                   [配置目录]
         ├─ common.php          
     docs                     [接口文档目录]
     framework                [框架目录]
@@ -75,7 +92,7 @@
         ├─ TestCase.php          [测试用例]
     vendor                   [composer目录]
     view
-    .env.example             [业务配置示例]  
+    .env.example             [具体配置示例]  
     .gitignore                 
     .travis.yml              [travis-ci配置]
     composer.json            [composer配置]
@@ -84,34 +101,20 @@
     README-CN.md               
     README.md             
     ```
-### 2.开始
-- 安装依赖
-    ```
-    composer install
-    ```
-- Nginx配置
-    ```
-    server{
-        ......
-        root path-to-e-php/public;
-        
-        location / {
-            try_files $uri $uri/ /index.php?$query_string;
-        }
-        ......
-    }
-    ```
 ### 3.模块说明
 - 入口文件
 
     [[file: public/index.php](public/index.php)]
 - 自动加载
 - 错误和异常处理
+    
+    捕获异常：set_exception_handler()
+    捕获所有错误：set_error_handler() + register_shutdown_function()
 - 配置文件
 - 服务容器
 
-    把直接依赖转变为依赖于第三方，获取依赖的实例直接通过第三方去完成以达到松耦合的目的。
-    如：把Request,Config等实例都以单例的方式注入到服务容器中，需要使用时从容器中获取即可。
+    原理：把直接依赖转变为依赖于第三方，获取依赖的实例直接通过第三方去完成以达到松耦合的目的。
+    实现：加载并调用各服务的register()方法注册入服务容器，需要时从中获取。
     ```
     // 注入单例
     App::$container->setSingle('别名，方便获取', '对象/闭包/类名');
@@ -138,6 +141,8 @@
     目前使用 [SeasLog](https://github.com/SeasX/SeasLog)
 - 输入和输出
 - 路由模块
+    
+    任务模式、普通url模式、pathinfo模式
 - 从MVC到MCL
 
     V：视图交给前端，后端只提供数据，
