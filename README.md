@@ -1,12 +1,19 @@
 # php-frame
 > 手动实现PHP Web开发框架
 
+**目录**
+
+[文件文件目录说明](#文件目录说明)
 类别 | 页内目录
 --- | ---
-初始化 |[框架入口](#框架入口)，[自动加载](#自动加载)，[错误和异常处理](#错误和异常处理)，[配置加载](#配置加载)，[服务容器](#服务容器)
+初始化 |[框架入口](#框架入口)，[自动加载](#自动加载)，[错误与异常处理](#错误与异常处理)，[配置加载](#配置加载)，[服务容器](#服务容器)
 转发请求-处理-返回 |[路由](#路由)，MVC，[ORM](#对象关系映射)，视图
-测试与提交 |[单元测试](#单元测试)，[Git钩子](#钩子)
 
+测试与使用：[单元测试](#单元测试)，[Git钩子](#钩子)，[运行使用](#运行使用)
+
+***
+
+### 文件目录说明
 主要文件目录|说明
 ---|---
 app |应用目录
@@ -17,7 +24,9 @@ runtime |临时目录
 tests |单元测试
 vendor |composer目录
 .env.example |[业务配置示例]
- 
+
+***
+
 ### 框架入口
 [public/index.php](public/index.php) -> [framework/start.php](framework/start.php)
 ### 自动加载
@@ -209,3 +218,8 @@ public function testDemo()
 - commit-msg规范：采用ruanyifeng的commit msg规范，对commit msg进行格式验证，增强git log可读性和便于后期查错和统计log等, 这里使用了[Treri](https://github.com/Treri)的commit-msg脚本。
 
 [./git-hooks/](./git-hooks)
+
+***
+
+## 运行使用
+> nginx配置虚拟主机根目录设置为项目中的public，然后访问虚拟主机地址。
