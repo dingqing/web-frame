@@ -1,7 +1,7 @@
 <?php
 
 return [
-    /* 主库配置 */
+    /* 主库 */
     'db' => [
         'database_type'   => env('db')['database_type'],
         'dbprefix' => env('db')['dbprefix'],
@@ -11,14 +11,14 @@ return [
         'password' => env('db')['password'],
         'slave'    => explode(',', env('db')['slave'])
     ],
-    /* 从库0配置 */
+    /* 从库0 */
     'db-slave-0' => [
         'dbname'   => env('db-slave-0')['dbname'],
         'dbhost'   => env('db-slave-0')['dbhost'],
         'username' => env('db-slave-0')['username'],
         'password' => env('db-slave-0')['password'],
     ],
-    /* 从库1配置 */
+    /* 从库1 */
     'db-slave-1' => [
         'dbname'   => env('db-slave-1')['dbname'],
         'dbhost'   => env('db-slave-1')['dbhost'],

@@ -1,7 +1,12 @@
 <?php
-
 namespace Framework;
 
+use Framework\Handles\Error;
+use Framework\Handles\Env;
+use Framework\Handles\Router;
+use Framework\Handles\Config;
+use Framework\Handles\Log;
+use Framework\Handles\Nosql;
 use Closure;
 
 class App
@@ -9,34 +14,31 @@ class App
     public static $rootPath;
     public static $container;
 
-    public $runningMode = 'fpm';
+    public $runningMode = 'cli';
 
     private $notOutput = false;
-    private $responseData='hello e-php';
+    private $responseData='hello php-frame';
 
     public function __construct($rootPath, Closure $loader)
     {
         self::$rootPath = $rootPath;
-
-        $loader(); // require Load file
+        
+        $loader(); // register aotoLoad functions
         Load::register($this);
 
-        // register services
         self::$container = new Container();
     }
 
-    public function load(Closure $handle)
+    public function run(Closure $req)
     {
-        $this->handlesList[] = $handle;
-    }
-
-    public function run(Closure $request)
-    {
-        self::$container->set('request', $request);
-
-        foreach ($this->handlesList as $handle) {
-            $handle()->register($this);
+        self::$container->set('req', $req);
+        
+        $dh = opendir(self::$rootPath . 'framework/handles/');
+        while ($file = readdir($dh) !== false) {
+            if ($file == 'Handle') {continue;}
+            basename($file)()->register($this);
         }
+        closedir($dh);
     }
 
     public function response(Closure $closure)
@@ -62,7 +64,7 @@ class App
         }
         $closure($this)->response($this->responseData);*/
     }
-
+    
     public function responseSwoole(Closure $closure)
     {
         $closure()->header('Content-Type', 'Application/json');

@@ -1,13 +1,4 @@
 <?php
-/**
- * 框架助手函数文件
- *
- * 提供高效便捷的框架函数
- *
- * Framework's helper function file
- *
- */
-
 use Framework\App;
 
 /**

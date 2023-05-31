@@ -15,3 +15,5 @@ yarn-error.log
 clover.cxml
 
 .idea
+
+composer.lock

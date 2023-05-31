@@ -1,11 +1,9 @@
 <?php
 /**
  * User: dingqing
- * Time: 19-1-8 下午3:07
+ * Time: 2019-1-8 下午3:07
  */
-
 namespace Framework;
-
 
 class Load
 {
@@ -16,12 +14,16 @@ class Load
         self::$namespaceMap = [
             'Framework' => App::$rootPath
         ];
-
+        // 注册自定义自加载方法
         spl_autoload_register(['Framework\Load', 'autoload']);
-
-        require(App::$rootPath . 'vendor/autoload.php');
+        // composer自加载文件
+        // require(App::$rootPath . 'vendor/autoload.php');
     }
 
+    /**
+     * 输入示例：Framework\Handles\RouterHandle
+     * 输出：framework/handles/routerhandle.php
+     */
     public static function autoload($class)
     {
         $classArr = explode('\\', $class);

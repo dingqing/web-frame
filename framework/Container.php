@@ -1,5 +1,4 @@
 <?php
-
 namespace Framework;
 
 use Framework\Exceptions\CoreHttpException;
@@ -9,21 +8,14 @@ class Container
     private $classMap = [];
     public $instanceMap = [];
 
-    public function set($alias = '', $objectName = '')
+    public function set($alias = '', $service = '')
     {
-        $this->classMap[$alias] = $objectName;
-        if (is_callable($objectName)) {
-            return $objectName();
+        $this->classMap[$alias] = $service;
+        if (is_callable($service)) {
+            return $service();
         }
-        return new $objectName;
+        return new $service;
     }
-
-    /**
-     * get a instance from a class
-     *
-     * @param  string $alias
-     * @return object
-     */
     public function get($alias = '')
     {
         if (array_key_exists($alias, $this->classMap)) {
@@ -41,13 +33,6 @@ class Container
         );
     }
 
-    /**
-     * inject a sington class
-     *
-     * @param string $alias
-     * @param object||closure||string $object
-     * @return object
-     */
     public function setSingle($alias = '', $object = '')
     {
         if (is_callable($alias)) {
@@ -95,14 +80,6 @@ class Container
         $this->instanceMap[$alias] = new $alias();
         return $this->instanceMap[$alias];
     }
-
-    /**
-     * get a sington instance
-     *
-     * @param  string $alias
-     * @param  Closure $closure
-     * @return object
-     */
     public function getSingle($alias = '', $closure = '')
     {
         if (array_key_exists($alias, $this->instanceMap)) {

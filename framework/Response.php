@@ -1,5 +1,4 @@
 <?php
-
 namespace Framework;
 
 class Response
@@ -12,7 +11,14 @@ class Response
             'code' => $code,
         ]);
     }
-
+    public function cliModeSuccess($response)
+    {
+        var_dump([
+            'code'    => 200,
+            'message' => 'OK',
+            'result'  => $response
+        ]);
+    }
     public function restSuccess($response)
     {
         header('Content-Type:Application/json; Charset=utf-8');

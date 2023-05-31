@@ -1,17 +1,10 @@
 <?php
-
 namespace Framework\exceptions;
 
 use Exception;
-use SeasLog;
 
-/**
- */
 class CoreHttpException extends Exception
 {
-    /**
-     * @var array
-     */
     private $httpCode = [
         400 => 'Bad Request',
         403 => 'Forbidden',
@@ -21,7 +14,7 @@ class CoreHttpException extends Exception
     ];
 
     /**
-     * @param int $code excption code
+     * @return int $code excption code
      */
     public function __construct($code = 200, $extra = '')
     {
@@ -52,9 +45,6 @@ class CoreHttpException extends Exception
             ]
         ];
 
-        // log
-        SeasLog::debug(json_encode($data));
-
         // response
         header('Content-Type:Application/json; Charset=utf-8');
         die(json_encode($data, JSON_UNESCAPED_UNICODE));
@@ -76,9 +66,6 @@ class CoreHttpException extends Exception
                 ]
             ]
         ];
-
-        // log
-        SeasLog::debug(json_encode($data));
 
         // response
         $reponse = App::$container->get('response-swoole');
@@ -102,10 +89,6 @@ class CoreHttpException extends Exception
                 ]
             ]
         ];
-
-        // log
-        SeasLog::debug(json_encode($data));
-
         header('Content-Type:Application/json; Charset=utf-8');
         die(json_encode($data));
     }
@@ -127,10 +110,6 @@ class CoreHttpException extends Exception
                 ]
             ]
         ];
-
-        // log
-        SeasLog::debug(json_encode($data));
-
         $reponse = App::$container->get('response-swoole');
         $reponse->header('Content-Type', 'Application/json');
         $reponse->header('Charset', 'utf-8');

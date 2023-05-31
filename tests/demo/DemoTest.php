@@ -10,7 +10,7 @@ class DemoTest extends TestCase
     public function testDemo()
     {
         $this->assertEquals(
-            'Hello E-PHP',
+            'Hello php-frame',
             App::$app->get('api/index/index')
         );
     }
