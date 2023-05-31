@@ -20,9 +20,7 @@ app |应用目录
 .git-hooks |git钩子
 framework |框架
 public |公共资源目录，暴露到万维网
-runtime |临时目录
 tests |单元测试
-vendor |composer目录
 .env.example |[业务配置示例]
 
 ***
