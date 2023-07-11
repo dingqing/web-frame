@@ -1,5 +1,5 @@
-# php-frame
-> 手动实现PHP Web开发框架
+# web-frame
+> 手动实现Web开发框架（PHP）
 
 **目录**
 
@@ -124,7 +124,7 @@ public function modelExample()
         $testTableModel->modelDeleteDemo();
         // update data
         $testTableModel->modelUpdateDemo([
-               'nickname' => 'php-frame'
+               'nickname' => 'web-frame'
             ]);
         // count data
         $testTableModel->modelCountDemo();
@@ -200,8 +200,8 @@ tests目录下编写测试文件，具体参考tests/demo目录下的DemoTest文
 public function testDemo()
 {
     $this->assertEquals(
-        'Hello php-frame',
-        // 执行demo模块index控制器hello操作，断言结果是不是等于'Hello php-frame'　
+        'Hello web-frame',
+        // 执行demo模块index控制器hello操作，断言结果是不是等于'Hello web-frame'　
         App::$app->get('demo/index/hello')
     );
 }

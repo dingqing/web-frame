@@ -17,7 +17,7 @@ class App
     public $runningMode = 'cli';
 
     private $notOutput = false;
-    private $responseData='hello php-frame';
+    private $responseData='hello web-frame';
 
     public function __construct($rootPath, Closure $loader)
     {

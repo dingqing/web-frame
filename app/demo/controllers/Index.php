@@ -18,7 +18,7 @@ class Index
      */
     public function hello()
     {
-        return 'Hello php-frame';
+        return 'Hello web-frame';
     }
 
     /**
@@ -80,10 +80,10 @@ class Index
      */
     public function log()
     {
-        Log::debug('php-frame');
-        Log::notice('php-frame');
-        Log::warning('php-frame');
-        Log::error('php-frame');
+        Log::debug('web-frame');
+        Log::notice('web-frame');
+        Log::warning('web-frame');
+        Log::error('web-frame');
 
         return [];
     }

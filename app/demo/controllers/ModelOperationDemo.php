@@ -36,7 +36,7 @@ class ModelOperationDemo
             $testTableModel->modelDeleteDemo();
             // update data
             $testTableModel->modelUpdateDemo([
-                   'nickname' => 'php-frame'
+                   'nickname' => 'web-frame'
                 ]);
             // count data
             $testTableModel->modelCountDemo();

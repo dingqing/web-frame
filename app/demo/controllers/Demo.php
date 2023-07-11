@@ -19,7 +19,7 @@ class Demo
     public function get()
     {
         $data = [
-            'content' => 'Hello php-frame!'
+            'content' => 'Hello web-frame!'
         ];
         $data = array_fill(0, 20, $data);
         return $data;

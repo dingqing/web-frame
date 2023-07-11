@@ -60,7 +60,7 @@ class TestTable extends Model
     public function modelSaveDemo()
     {
         $data = [
-            'nickname' => 'php-frame',
+            'nickname' => 'web-frame',
         ];
         $res      = $this->save($data);
         $sql      = $this->sql;

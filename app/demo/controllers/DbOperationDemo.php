@@ -77,7 +77,7 @@ class DbOperationDemo
         $test = DB::table('test');
 
         $userId = $user->save([
-            'nickname' => 'php-frame',
+            'nickname' => 'web-frame',
         ]);
 
         $testId = $test->save([
@@ -136,7 +136,7 @@ class DbOperationDemo
         $instance = DB::table('user');
         $res      = $instance->where($where)
                              ->update([
-                                 'nickname' => 'php-frame'
+                                 'nickname' => 'web-frame'
                              ]);
         $sql      = $instance->sql;
 
